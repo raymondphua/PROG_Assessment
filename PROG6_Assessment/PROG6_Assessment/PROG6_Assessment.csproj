@@ -76,11 +76,14 @@
     </ApplicationDefinition>
     <Compile Include="Model\Afdeling.cs" />
     <Compile Include="Repository\DummyMerkRepository.cs" />
+    <Compile Include="Repository\DummyProductRepository.cs" />
     <Compile Include="Repository\IMerkRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Model\Merk.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MerkListViewModel.cs" />
+    <Compile Include="ViewModel\MerkViewModel.cs" />
     <Compile Include="ViewModel\ProductListViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
