@@ -33,7 +33,9 @@ namespace PROG6_Assessment.ViewModel
         // Constructor
         public ProductListViewModel()
         {
-            this.productRepository = new DummyProductRepository();
+            productRepository = new DummyProductRepository();
+            // productRepository = new ProductRepository();
+
             var productList = productRepository.ToList().Select(s => new ProductViewModel(s));
 
             AddProductCommand = new RelayCommand(AddNewProduct, CanAddProduct);
