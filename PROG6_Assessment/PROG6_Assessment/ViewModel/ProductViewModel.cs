@@ -1,4 +1,5 @@
 ﻿using PROG6_Assessment.Model;
+using PROG6_Assessment.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ namespace PROG6_Assessment.ViewModel
         public string ProductNaam
         {
             get { return _product.ProductNaam; }
-            set { _product.ProductNaam = value; OnPropertyChanged(); }
+            set { _product.Merken = merken.ToList(); OnPropertyChanged(); }
         }
 
         public List<Merk> Merken
@@ -22,16 +23,20 @@ namespace PROG6_Assessment.ViewModel
             get { return _product.Merken; }
             set { _product.Merken = value; OnPropertyChanged(); }
         }
+
         private Product _product;
+        private IMerkRepository merken;
 
         public ProductViewModel()
         {
             this._product = new Product();
+            this.merken = new DummyMerkRepository();
         }
 
         public ProductViewModel(Product product)
         {
             this._product = product;
+            this.merken = new DummyMerkRepository();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
