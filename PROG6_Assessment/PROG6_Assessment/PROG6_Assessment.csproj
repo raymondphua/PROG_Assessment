@@ -75,7 +75,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Afdeling.cs" />
-    <Compile Include="Model\IProductRepository.cs" />
+    <Compile Include="Repository\DummyMerkRepository.cs" />
+    <Compile Include="Repository\IMerkRepository.cs" />
+    <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Model\Merk.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

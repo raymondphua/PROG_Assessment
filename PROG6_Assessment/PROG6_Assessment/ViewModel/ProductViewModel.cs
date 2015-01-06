@@ -10,6 +10,18 @@ namespace PROG6_Assessment.ViewModel
 {
     public class ProductViewModel : INotifyPropertyChanged
     {
+
+        public string ProductNaam
+        {
+            get { return _product.ProductNaam; }
+            set { _product.ProductNaam = value; OnPropertyChanged(); }
+        }
+
+        public List<Merk> Merken
+        {
+            get { return _product.Merken; }
+            set { _product.Merken = value; OnPropertyChanged(); }
+        }
         private Product _product;
 
         public ProductViewModel()
