@@ -13,6 +13,8 @@ namespace PROG6_Assessment.ViewModel
     public class ProductViewModel : INotifyPropertyChanged
     {
 
+        public int ProductId { get { return _product.ProductId; } }
+
         public string ProductNaam
         {
             get { return _product.ProductNaam; }
@@ -20,18 +22,15 @@ namespace PROG6_Assessment.ViewModel
         }
 
         private Product _product;
-        private IMerkRepository merken;
 
         public ProductViewModel()
         {
             this._product = new Product();
-            this.merken = new DummyMerkRepository();
         }
 
         public ProductViewModel(Product product)
         {
             this._product = product;
-            this.merken = new DummyMerkRepository();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -56,6 +56,7 @@ namespace PROG6_Assessment.ViewModel
             product.ProductNaam = SelectedProduct.ProductNaam;
 
             Products.Add(product);
+          //  productRepository.Create(product);
         }
 
         private bool CanAddProduct()
