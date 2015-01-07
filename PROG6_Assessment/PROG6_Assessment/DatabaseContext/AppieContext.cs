@@ -1,4 +1,5 @@
-﻿using PROG6_Assessment.Model;
+﻿using DomainModel.Model;
+using PROG6_Assessment.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

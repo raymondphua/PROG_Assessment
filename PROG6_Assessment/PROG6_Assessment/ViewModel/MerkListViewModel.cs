@@ -1,6 +1,7 @@
-﻿using GalaSoft.MvvmLight;
+﻿using DomainModel.Repository;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using PROG6_Assessment.Repository;
+using PROG6_Assessment.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,7 +35,7 @@ namespace PROG6_Assessment.ViewModel
         public MerkListViewModel()
         {
             this.merkRepository = new DummyMerkRepository();
-            var merkList = merkRepository.ToList().Select(s => new MerkViewModel(s));
+            var merkList = merkRepository.GetAll().Select(s => new MerkViewModel(s));
 
             AddMerkCommand = new RelayCommand(AddNewMerk, CanAddMerk);
             DeleteMerkCommand = new RelayCommand(DeleteMerk, CanDeleteMerk);

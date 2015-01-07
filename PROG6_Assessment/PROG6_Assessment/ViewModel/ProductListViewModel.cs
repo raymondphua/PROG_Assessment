@@ -1,6 +1,7 @@
-﻿using GalaSoft.MvvmLight;
+﻿using DomainModel.Repository;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using PROG6_Assessment.Repository;
+using PROG6_Assessment.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,7 +37,7 @@ namespace PROG6_Assessment.ViewModel
             productRepository = new DummyProductRepository();
             // productRepository = new ProductRepository();
 
-            var productList = productRepository.ToList().Select(s => new ProductViewModel(s));
+            var productList = productRepository.GetAll().Select(s => new ProductViewModel(s));
 
             AddProductCommand = new RelayCommand(AddNewProduct, CanAddProduct);
             DeleteProductCommand = new RelayCommand(DeleteProduct, CanDeleteProduct);

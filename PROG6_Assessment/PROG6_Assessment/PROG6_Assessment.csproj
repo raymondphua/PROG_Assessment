@@ -82,14 +82,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DatabaseContext\AppieContext.cs" />
-    <Compile Include="Model\Afdeling.cs" />
-    <Compile Include="Repository\DummyMerkRepository.cs" />
-    <Compile Include="Repository\DummyProductRepository.cs" />
-    <Compile Include="Repository\IMerkRepository.cs" />
-    <Compile Include="Repository\IProductRepository.cs" />
-    <Compile Include="Model\Merk.cs" />
-    <Compile Include="Model\Product.cs" />
-    <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Model\DummyMerkRepository.cs" />
+    <Compile Include="Model\DummyProductRepository.cs" />
+    <Compile Include="Model\MerkRepository.cs" />
+    <Compile Include="Model\ProductRepository.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MerkListViewModel.cs" />
     <Compile Include="ViewModel\MerkViewModel.cs" />
@@ -137,6 +133,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
+      <Project>{1f8eab42-bdc5-44aa-89a8-83e88bee6bde}</Project>
+      <Name>DomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
