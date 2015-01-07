@@ -37,7 +37,7 @@ namespace PROG6_Assessment.ViewModel
         public ProductListViewModel()
         {
             productRepository = new DummyProductRepository();
-            // productRepository = new ProductRepository();
+            //productRepository = new ProductRepository();
 
             var productList = productRepository.GetAll().Select(s => new ProductViewModel(s));
 

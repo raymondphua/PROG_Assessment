@@ -22,7 +22,7 @@ namespace PROG6_Assessment
     {
         public MainWindow()
         {
-            ProductListViewModel test = new ProductListViewModel();
+            //ProductListViewModel test = new ProductListViewModel();
             InitializeComponent();
         }
     }

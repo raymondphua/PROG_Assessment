@@ -15,10 +15,10 @@ namespace PROG6_Assessment.Model
         {
             var products = new List<Product>();
 
-            products.Add(new Product { ProductNaam = "Wit Brood" });
-            products.Add(new Product { ProductNaam = "Bruin Brood" });
-            products.Add(new Product { ProductNaam = "Tijger Brood" });
-            products.Add(new Product { ProductNaam = "Bedorven Brood" });
+            products.Add(new Product { ProductId = 1, ProductNaam = "Wit Brood" });
+            products.Add(new Product { ProductId = 2, ProductNaam = "Bruin Brood" });
+            products.Add(new Product { ProductId = 3, ProductNaam = "Tijger Brood" });
+            products.Add(new Product { ProductId = 4, ProductNaam = "Bedorven Brood" });
 
             return products;
         }
