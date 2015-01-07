@@ -42,6 +42,7 @@ namespace PROG6_Assessment.ViewModel
             var productList = productRepository.GetAll().Select(s => new ProductViewModel(s));
 
             AddProductCommand = new RelayCommand(AddNewProduct, CanAddProduct);
+            EditProductCommand = new RelayCommand(EditProduct, CanEditProduct);
             DeleteProductCommand = new RelayCommand(DeleteProduct, CanDeleteProduct);
             ClearProductCommand = new RelayCommand(ClearProduct, CanClear);
 
@@ -103,7 +104,10 @@ namespace PROG6_Assessment.ViewModel
         // ---------------- Delete Product ---------------- //
         private void DeleteProduct()
         {
-            Products.Remove(SelectedProduct);
+            var deleteProduct = SelectedProduct.ConvertToProduct(SelectedProduct);
+
+            productRepository.Delete(deleteProduct);
+
             SelectedProduct = new ProductViewModel();
         }
 

@@ -82,10 +82,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DatabaseContext\AppieContext.cs" />
+    <Compile Include="Model\AfdelingRepository.cs" />
     <Compile Include="Model\DummyMerkRepository.cs" />
     <Compile Include="Model\DummyProductRepository.cs" />
     <Compile Include="Model\MerkRepository.cs" />
     <Compile Include="Model\ProductRepository.cs" />
+    <Compile Include="ViewModel\AfdelingListViewModel.cs" />
+    <Compile Include="ViewModel\AfdelingViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MerkListViewModel.cs" />
     <Compile Include="ViewModel\MerkViewModel.cs" />

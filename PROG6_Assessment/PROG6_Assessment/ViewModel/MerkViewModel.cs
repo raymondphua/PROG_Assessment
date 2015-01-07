@@ -21,6 +21,21 @@ namespace PROG6_Assessment.ViewModel
             set { _merk.MerkNaam = value; OnPropertyChanged(); } 
         }
 
+        public Product Product
+        {
+            get { return _merk.Product; }
+        }
+
+        public Merk ConvertToMerk(MerkViewModel convert)
+        {
+            var merk = new Merk();
+
+            merk.MerkNaam = convert.Merknaam;
+            merk.Product = convert.Product;
+
+            return merk;
+        }
+
         private Merk _merk;
 
         public MerkViewModel()

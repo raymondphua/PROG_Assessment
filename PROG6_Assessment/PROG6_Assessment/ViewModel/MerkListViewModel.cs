@@ -1,4 +1,5 @@
-﻿using DomainModel.Repository;
+﻿using DomainModel.Model;
+using DomainModel.Repository;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using PROG6_Assessment.Model;
@@ -25,9 +26,9 @@ namespace PROG6_Assessment.ViewModel
             set { _selectedMerk = value; RaisePropertyChanged(); }
         }
 
-
         // ICommands
         public ICommand AddMerkCommand { get; set; }
+        public ICommand EditMerkCommand { get; set; }
         public ICommand DeleteMerkCommand { get; set; }
         public ICommand ClearMerkCommand { get; set; }
 
@@ -38,6 +39,7 @@ namespace PROG6_Assessment.ViewModel
             var merkList = merkRepository.GetAll().Select(s => new MerkViewModel(s));
 
             AddMerkCommand = new RelayCommand(AddNewMerk, CanAddMerk);
+            EditMerkCommand = new RelayCommand(EditMerk, CanEditMerk);
             DeleteMerkCommand = new RelayCommand(DeleteMerk, CanDeleteMerk);
             ClearMerkCommand = new RelayCommand(ClearMerk, CanClear);
 
@@ -53,7 +55,9 @@ namespace PROG6_Assessment.ViewModel
 
             merk.Merknaam = SelectedMerk.Merknaam;
 
-            Merken.Add(merk);
+            var addMerk = merk.ConvertToMerk(merk);
+            //Merken.Add(merk);
+            merkRepository.Create(addMerk);
         }
 
         private bool CanAddMerk()
@@ -70,10 +74,37 @@ namespace PROG6_Assessment.ViewModel
             return true;
         }
 
+        // ---------------- Edit Merk ---------------- //
+        private void EditMerk()
+        {
+            // var merk = SelectedProduct;
+
+            Merk updateMerk = SelectedMerk.ConvertToMerk(SelectedMerk);
+            merkRepository.Update(updateMerk);
+        }
+
+        private bool CanEditMerk()
+        {
+            if (SelectedMerk == null)
+            {
+                return false;
+            }
+            if (String.IsNullOrEmpty(SelectedMerk.Merknaam))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         // ---------------- Delete Merk ---------------- //
         private void DeleteMerk()
         {
-            Merken.Remove(SelectedMerk);
+            //Merken.Remove(SelectedMerk);
+            var deleteMerk = SelectedMerk.ConvertToMerk(SelectedMerk);
+
+            merkRepository.Delete(deleteMerk);
+
             SelectedMerk = new MerkViewModel();
         }
 
