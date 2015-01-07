@@ -2,6 +2,7 @@
 using DomainModel.Repository;
 using PROG6_Assessment.DataBaseContext;
 using PROG6_Assessment.Model;
+using PROG6_Assessment.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,17 +27,22 @@ namespace PROG6_Assessment.Model
 
         public Product Find(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Producten.Find(id);
         }
 
         public void Create(Product entity)
         {
-            throw new NotImplementedException();
+            if (entity != null)
+            {
+                dbContext.Producten.Add(entity);
+            }
+            Save();
         }
 
         public void Update(Product entity)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            Save();
         }
 
         public void Delete(Product entity)
@@ -46,7 +52,7 @@ namespace PROG6_Assessment.Model
 
         public void Save()
         {
-            throw new NotImplementedException();
+            dbContext.SaveChanges();
         }
     }
 }

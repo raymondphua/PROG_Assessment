@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROG6_Assessment.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace PROG6_Assessment
     {
         public MainWindow()
         {
+            ProductListViewModel test = new ProductListViewModel();
             InitializeComponent();
         }
     }

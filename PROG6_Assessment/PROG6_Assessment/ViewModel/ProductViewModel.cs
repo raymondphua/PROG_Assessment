@@ -21,6 +21,29 @@ namespace PROG6_Assessment.ViewModel
             set { _product.ProductNaam = value; OnPropertyChanged(); }
         }
 
+        public Afdeling Afdeling
+        {
+            get { return _product.Afdeling; }
+        }
+
+        public List<Merk> Merken
+        {
+            get { return _product.Merken.ToList(); }
+        }
+
+
+        public Product ConvertToProduct(ProductViewModel convert)
+        {
+            Product product = new Product();
+
+            product.ProductNaam = convert.ProductNaam;
+            product.Afdeling = convert.Afdeling;
+            product.Merken = convert.Merken;
+
+            return product;
+        }
+
+
         private Product _product;
 
         public ProductViewModel()

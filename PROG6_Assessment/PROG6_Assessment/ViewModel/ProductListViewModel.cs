@@ -1,4 +1,5 @@
-﻿using DomainModel.Repository;
+﻿using DomainModel.Model;
+using DomainModel.Repository;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using PROG6_Assessment.Model;
@@ -28,6 +29,7 @@ namespace PROG6_Assessment.ViewModel
 
         // ICommands
         public ICommand AddProductCommand { get; set; }
+        public ICommand EditProductCommand { get; set; }
         public ICommand DeleteProductCommand { get; set; }
         public ICommand ClearProductCommand { get; set; }
 
@@ -55,11 +57,36 @@ namespace PROG6_Assessment.ViewModel
 
             product.ProductNaam = SelectedProduct.ProductNaam;
 
-            Products.Add(product);
-          //  productRepository.Create(product);
+            //Products.Add(product);
+            var addProduct = product.ConvertToProduct(product);
+
+            productRepository.Create(addProduct);
         }
 
         private bool CanAddProduct()
+        {
+            if (SelectedProduct == null)
+            {
+                return false;
+            }
+            if (String.IsNullOrEmpty(SelectedProduct.ProductNaam))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        // ---------------- Edit Product ---------------- //
+        private void EditProduct()
+        {
+            // var product = SelectedProduct;
+
+            Product updateProduct = SelectedProduct.ConvertToProduct(SelectedProduct);
+            productRepository.Update(updateProduct);
+        }
+
+        private bool CanEditProduct()
         {
             if (SelectedProduct == null)
             {
