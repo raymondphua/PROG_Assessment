@@ -1,0 +1,35 @@
+﻿<Window x:Class="PROG6_Assessment.TestAfdelingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TestAfdelingWindow" Height="350" Width="525" 
+        DataContext="{Binding Afdeling, Source={StaticResource Locator}}">
+
+        <StackPanel>
+            <TextBlock Text="Afdeling Lijst" FontSize="28" />
+            <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedAfdeling}" ItemsSource="{Binding Afdelingen}" Margin="5">
+                <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding ProductId}" Width="100"/>
+                <DataGridTextColumn Header="Afdeling" Binding="{Binding Afdeling.AfdelingNaam}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock Text="Create/Update/Delete Afdeling" Margin="5"  FontSize="28" />
+
+            <Grid Margin="5,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Afdeling naam:" Grid.Column="0" Grid.Row="0" />
+                <TextBox MaxLength="50" Grid.Column="1" Grid.Row="0"  Text="{Binding Path=SelectedAfdeling.AfdelingNaam, Mode=TwoWay}" />
+
+                <!-- List van Merken nog komen en of afdeling-->
+
+            </Grid>
+            <Button Content="Add" Command="{Binding AddSong}" Width="100"  HorizontalAlignment="Left" Margin="5,20,0,0"/>
+        </StackPanel>
+    </Window>

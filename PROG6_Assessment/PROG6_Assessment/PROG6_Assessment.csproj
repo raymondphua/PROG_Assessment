@@ -96,6 +96,9 @@
     <Compile Include="Model\DummyProductRepository.cs" />
     <Compile Include="Model\MerkRepository.cs" />
     <Compile Include="Model\ProductRepository.cs" />
+    <Compile Include="TestAfdelingWindow.xaml.cs">
+      <DependentUpon>TestAfdelingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestManager.xaml.cs">
       <DependentUpon>TestManager.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TestAfdelingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TestManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
