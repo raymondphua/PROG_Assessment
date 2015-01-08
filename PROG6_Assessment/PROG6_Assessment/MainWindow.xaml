@@ -29,6 +29,7 @@
 
             <TextBlock Text="Product naam:" Grid.Column="0" Grid.Row="0" />
             <TextBox MaxLength="50" Grid.Column="1" Grid.Row="0"  Text="{Binding Path=SelectedProduct.ProductNaam, Mode=TwoWay}" />
+            <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="230,0,-149,0" VerticalAlignment="Top" Width="120" Height="24" ItemsSource="{Binding Products}" SelectedItem="{Binding Merken.MerkNaam}"/>
 
             <!-- List van Merken nog komen en of afdeling-->
 

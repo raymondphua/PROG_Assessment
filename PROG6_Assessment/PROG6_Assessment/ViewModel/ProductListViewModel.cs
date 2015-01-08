@@ -19,6 +19,7 @@ namespace PROG6_Assessment.ViewModel
 
         private ProductViewModel _selectedProduct;
         private IProductRepository productRepository;
+        private IMerkRepository merkRepository;
 
         public ProductViewModel SelectedProduct 
         {
@@ -38,8 +39,9 @@ namespace PROG6_Assessment.ViewModel
         {
             //productRepository = new DummyProductRepository();
             productRepository = new ProductRepository();
+            merkRepository = new MerkRepository();
 
-            var productList = productRepository.GetAll().Select(s => new ProductViewModel(s));
+            var productList = productRepository.GetAll().Select(s => new ProductViewModel(s, merkRepository.GetAll()));
 
             AddProductCommand = new RelayCommand(AddNewProduct, CanAddProduct);
             EditProductCommand = new RelayCommand(EditProduct, CanEditProduct);

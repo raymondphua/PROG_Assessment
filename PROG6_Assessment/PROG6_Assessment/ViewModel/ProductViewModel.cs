@@ -30,6 +30,8 @@ namespace PROG6_Assessment.ViewModel
             get { return _product.Merk; }
         }
 
+        public List<Merk> Merken { get; set; }
+
         public Product ConvertToProduct(ProductViewModel convert)
         {
             Product product = new Product();
@@ -48,9 +50,10 @@ namespace PROG6_Assessment.ViewModel
             this._product = new Product();
         }
 
-        public ProductViewModel(Product product)
+        public ProductViewModel(Product product, List<Merk> merken)
         {
             this._product = product;
+            Merken = merken;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
