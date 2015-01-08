@@ -43,7 +43,8 @@ namespace PROG6_Assessment.Model
         {
             if (entity != null)
             {
-                dbContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                var editEntity = dbContext.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
+                dbContext.Entry(editEntity).State = System.Data.Entity.EntityState.Modified;
             }
             Save();
         }
@@ -52,7 +53,8 @@ namespace PROG6_Assessment.Model
         {
             if (entity != null)
             {
-                dbContext.Producten.Remove(entity);
+                var removeEntity = dbContext.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
+                dbContext.Producten.Remove(removeEntity);
             }
             Save();
         }

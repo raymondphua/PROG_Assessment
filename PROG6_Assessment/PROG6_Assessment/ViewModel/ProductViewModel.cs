@@ -36,6 +36,7 @@ namespace PROG6_Assessment.ViewModel
         {
             Product product = new Product();
 
+            product.ProductId = convert.ProductId;
             product.ProductNaam = convert.ProductNaam;
             product.Afdeling = convert.Afdeling;
             product.Merk = convert.Merk;
