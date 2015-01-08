@@ -9,6 +9,11 @@ namespace DomainModel.Model
 {
     public class Afdeling
     {
+        public Afdeling()
+        {
+            this.Producten = new List<Product>();
+        }
+
         [Key]
         public int AfdelingId { get; set; }
         [Required]

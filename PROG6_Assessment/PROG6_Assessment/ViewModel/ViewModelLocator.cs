@@ -32,9 +32,22 @@ namespace PROG6_Assessment.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
                 
             //SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<AfdelingListViewModel>();
             SimpleIoc.Default.Register<ProductListViewModel>();
+            SimpleIoc.Default.Register<MerkListViewModel>();
+
+            //test
+            SimpleIoc.Default.Register<TestWindowManagerViewModel>();
         }
         
+        public AfdelingListViewModel Afdeling
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AfdelingListViewModel>();
+            }
+        }
+
         public ProductListViewModel Product
         {
             get
@@ -42,7 +55,24 @@ namespace PROG6_Assessment.ViewModel
                 return ServiceLocator.Current.GetInstance<ProductListViewModel>();
             }
         }
+
+        public MerkListViewModel Merk
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MerkListViewModel>();
+            }
+        }
         
+        // test
+
+        public TestWindowManagerViewModel Manager
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<TestWindowManagerViewModel>();
+            }
+        }
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

@@ -1,4 +1,6 @@
-﻿using DomainModel.Repository;
+﻿using DomainModel.Model;
+using DomainModel.Repository;
+using PROG6_Assessment.DataBaseContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,34 +11,48 @@ namespace PROG6_Assessment.Model
 {
     public class AfdelingRepository : IAfdelingRepository
     {
-        public List<DomainModel.Model.Afdeling> GetAll()
+        private AppieContext dbContext;
+
+        public List<Afdeling> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.Afdelingen.ToList();
         }
 
-        public DomainModel.Model.Afdeling Find(int id)
+        public Afdeling Find(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Afdelingen.Find(id);
         }
 
-        public void Create(DomainModel.Model.Afdeling entity)
+        public void Create(Afdeling entity)
         {
-            throw new NotImplementedException();
+            if (entity != null)
+            {
+                dbContext.Afdelingen.Add(entity);
+            }
+            Save();
         }
 
-        public void Update(DomainModel.Model.Afdeling entity)
+        public void Update(Afdeling entity)
         {
-            throw new NotImplementedException();
+            if (entity != null)
+            {
+                dbContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            }
+            Save();
         }
 
-        public void Delete(DomainModel.Model.Afdeling entity)
+        public void Delete(Afdeling entity)
         {
-            throw new NotImplementedException();
+            if (entity != null)
+            {
+                dbContext.Afdelingen.Remove(entity);
+            }
+            Save();
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            dbContext.SaveChanges();
         }
     }
 }

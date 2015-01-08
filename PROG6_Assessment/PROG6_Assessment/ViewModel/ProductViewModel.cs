@@ -12,7 +12,6 @@ namespace PROG6_Assessment.ViewModel
 {
     public class ProductViewModel : INotifyPropertyChanged
     {
-
         public int ProductId { get { return _product.ProductId; } }
 
         public string ProductNaam
@@ -26,11 +25,10 @@ namespace PROG6_Assessment.ViewModel
             get { return _product.Afdeling; }
         }
 
-        public List<Merk> Merken
+        public Merk Merk
         {
-            get { return _product.Merken.ToList(); }
+            get { return _product.Merk; }
         }
-
 
         public Product ConvertToProduct(ProductViewModel convert)
         {
@@ -38,8 +36,7 @@ namespace PROG6_Assessment.ViewModel
 
             product.ProductNaam = convert.ProductNaam;
             product.Afdeling = convert.Afdeling;
-            product.Merken = convert.Merken;
-
+            product.Merk = convert.Merk;
             return product;
         }
 

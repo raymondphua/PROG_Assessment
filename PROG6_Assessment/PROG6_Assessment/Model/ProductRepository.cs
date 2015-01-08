@@ -41,13 +41,20 @@ namespace PROG6_Assessment.Model
 
         public void Update(Product entity)
         {
-            dbContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            if (entity != null)
+            {
+                dbContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            }
             Save();
         }
 
         public void Delete(Product entity)
         {
-            throw new NotImplementedException();
+            if (entity != null)
+            {
+                dbContext.Producten.Remove(entity);
+            }
+            Save();
         }
 
         public void Save()

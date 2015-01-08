@@ -82,11 +82,26 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DatabaseContext\AppieContext.cs" />
+    <Compile Include="Migrations\201501071906351_databaseTest.cs" />
+    <Compile Include="Migrations\201501071906351_databaseTest.Designer.cs">
+      <DependentUpon>201501071906351_databaseTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501081319027_updateDeFuckingDatabase.cs" />
+    <Compile Include="Migrations\201501081319027_updateDeFuckingDatabase.Designer.cs">
+      <DependentUpon>201501081319027_updateDeFuckingDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AfdelingRepository.cs" />
     <Compile Include="Model\DummyMerkRepository.cs" />
     <Compile Include="Model\DummyProductRepository.cs" />
     <Compile Include="Model\MerkRepository.cs" />
     <Compile Include="Model\ProductRepository.cs" />
+    <Compile Include="TestManager.xaml.cs">
+      <DependentUpon>TestManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestWindow.xaml.cs">
+      <DependentUpon>TestWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AfdelingListViewModel.cs" />
     <Compile Include="ViewModel\AfdelingViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -94,6 +109,7 @@
     <Compile Include="ViewModel\MerkViewModel.cs" />
     <Compile Include="ViewModel\ProductListViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
+    <Compile Include="ViewModel\TestWindowManagerViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -107,6 +123,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TestManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -122,6 +146,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201501071906351_databaseTest.resx">
+      <DependentUpon>201501071906351_databaseTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501081319027_updateDeFuckingDatabase.resx">
+      <DependentUpon>201501081319027_updateDeFuckingDatabase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

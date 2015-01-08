@@ -35,7 +35,8 @@ namespace PROG6_Assessment.ViewModel
         // Constructor
         public MerkListViewModel()
         {
-            this.merkRepository = new DummyMerkRepository();
+            //this.merkRepository = new DummyMerkRepository();
+            merkRepository = new MerkRepository();
             var merkList = merkRepository.GetAll().Select(s => new MerkViewModel(s));
 
             AddMerkCommand = new RelayCommand(AddNewMerk, CanAddMerk);

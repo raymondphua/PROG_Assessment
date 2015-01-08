@@ -21,9 +21,9 @@ namespace PROG6_Assessment.ViewModel
             set { _merk.MerkNaam = value; OnPropertyChanged(); } 
         }
 
-        public Product Product
+        public List<Product> Producten
         {
-            get { return _merk.Product; }
+            get { return _merk.Producten.ToList(); }
         }
 
         public Merk ConvertToMerk(MerkViewModel convert)
@@ -31,7 +31,7 @@ namespace PROG6_Assessment.ViewModel
             var merk = new Merk();
 
             merk.MerkNaam = convert.Merknaam;
-            merk.Product = convert.Product;
+            merk.Producten = convert.Producten;
 
             return merk;
         }

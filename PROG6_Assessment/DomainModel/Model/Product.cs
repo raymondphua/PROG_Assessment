@@ -14,6 +14,6 @@ namespace DomainModel.Model
         [Required]
         public string ProductNaam { get; set; }
         public virtual Afdeling Afdeling { get; set; }
-        public virtual ICollection<Merk> Merken { get; set; }
+        public virtual Merk Merk { get; set; }
     }
 }
