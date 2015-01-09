@@ -15,39 +15,66 @@ namespace PROG6_Assessment.Model
 
         public List<Afdeling> GetAll()
         {
-            return dbContext.Afdelingen.ToList();
+            List<Afdeling> afdelingen = new List<Afdeling>();
+
+            using (var context = new AppieContext())
+            {
+                afdelingen = context.Afdelingen.ToList();
+            }
+            return afdelingen;
         }
 
         public Afdeling Find(int id)
         {
-            return dbContext.Afdelingen.Find(id);
+            Afdeling afdeling = null;
+            using (var context = new AppieContext())
+            {
+                afdeling = context.Afdelingen.Find(id);
+            }
+
+            return afdeling;
         }
 
         public void Create(Afdeling entity)
         {
-            if (entity != null)
+            using (var context = new AppieContext())
             {
-                dbContext.Afdelingen.Add(entity);
+                if (entity != null)
+                {
+                    foreach (var item in entity.Producten)
+                    {
+                        context.Entry(entity).State = System.Data.Entity.EntityState.Unchanged;
+                    }
+
+                    context.Afdelingen.Add(entity);
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Update(Afdeling entity)
         {
-            if (entity != null)
+            using (var context = new AppieContext())
             {
-                dbContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                if (entity != null)
+                {
+                    //context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                    context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Delete(Afdeling entity)
         {
-            if (entity != null)
+            using (var context = new AppieContext())
             {
-                dbContext.Afdelingen.Remove(entity);
+                if (entity != null)
+                {
+                    context.Afdelingen.Remove(entity);
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Save()

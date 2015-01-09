@@ -20,39 +20,67 @@ namespace PROG6_Assessment.Model
 
         public List<Merk> GetAll()
         {
-            return dbContext.Merken.ToList();
+            List<Merk> merken = new List<Merk>();
+
+            using (var context = new AppieContext())
+            {
+                merken = context.Merken.ToList();
+            }
+
+            return merken;
         }
 
         public Merk Find(int id)
         {
-            return dbContext.Merken.Find(id);
+            Merk merk = null;
+            using (var context = new AppieContext())
+            {
+                merk = context.Merken.Find(id);
+            }
+
+            return merk;
         }
 
         public void Create(Merk entity)
         {
-            if (entity != null)
+            using (var context = new AppieContext())
             {
-                dbContext.Merken.Add(entity);
+                if (entity != null)
+                {
+                    foreach (var item in entity.Producten)
+                    {
+                        context.Entry(entity).State = System.Data.Entity.EntityState.Unchanged;
+                    }
+                    
+                    context.Merken.Add(entity);
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Update(Merk entity)
         {
-            if (entity != null)
+            using (var context = new AppieContext())
             {
-                dbContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                if (entity != null)
+                {
+                    //context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                    context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Delete(Merk entity)
         {
-            if (entity != null)
+            using (var context = new AppieContext())
             {
-                dbContext.Merken.Remove(entity);
+                if (entity != null)
+                {
+                    context.Merken.Remove(entity);
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Save()

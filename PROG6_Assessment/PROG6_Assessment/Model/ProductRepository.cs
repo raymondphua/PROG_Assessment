@@ -22,39 +22,62 @@ namespace PROG6_Assessment.Model
 
         public List<Product> GetAll()
         {
-            return dbContext.Producten.ToList();
+            List<Product> products = null;
+
+            using (var context = new AppieContext())
+            {
+                products = context.Producten.ToList();
+            }
+            return products;
         }
 
         public Product Find(int id)
         {
-            return dbContext.Producten.Find(id);
+            Product product = null;
+            using (var context = new AppieContext())
+            {
+                product = context.Producten.Find(id);
+            }
+
+            return product;
         }
 
         public void Create(Product entity)
         {
-            if (entity != null)
+            using (var context = new AppieContext())
             {
-                dbContext.Producten.Add(entity);
+                if (entity != null)
+                {
+                    context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                    context.Producten.Add(entity);
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Update(Product entity)
         {
-            if (entity != null)
+            using (var context = new AppieContext())
             {
-                dbContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                if (entity != null)
+                {
+                    //context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                    context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Delete(Product entity)
         {
-            if (entity != null)
+            using (var context = new AppieContext())
             {
-                dbContext.Producten.Remove(entity);
+                if (entity != null)
+                {
+                    context.Producten.Remove(entity);
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Save()
