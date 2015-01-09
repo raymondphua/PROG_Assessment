@@ -82,6 +82,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DatabaseContext\AppieContext.cs" />
+    <Compile Include="MerkWindow.xaml.cs">
+      <DependentUpon>MerkWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201501071906351_databaseTest.cs" />
     <Compile Include="Migrations\201501071906351_databaseTest.Designer.cs">
       <DependentUpon>201501071906351_databaseTest.cs</DependentUpon>
@@ -96,17 +99,25 @@
     <Compile Include="Model\DummyProductRepository.cs" />
     <Compile Include="Model\MerkRepository.cs" />
     <Compile Include="Model\ProductRepository.cs" />
+    <Compile Include="TestAfdelingOverzicht.xaml.cs">
+      <DependentUpon>TestAfdelingOverzicht.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestAfdelingWindow.xaml.cs">
       <DependentUpon>TestAfdelingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TestManager.xaml.cs">
       <DependentUpon>TestManager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestProductOverzicht.xaml.cs">
+      <DependentUpon>TestProductOverzicht.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AfdelingListViewModel.cs" />
+    <Compile Include="ViewModel\AfdelingOverzichtViewModel.cs" />
     <Compile Include="ViewModel\AfdelingViewModel.cs" />
+    <Compile Include="ViewModel\AllListViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MerkListViewModel.cs" />
     <Compile Include="ViewModel\MerkViewModel.cs" />
@@ -126,11 +137,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MerkWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestAfdelingOverzicht.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TestAfdelingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TestManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestProductOverzicht.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

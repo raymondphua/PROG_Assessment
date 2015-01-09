@@ -12,17 +12,21 @@ namespace PROG6_Assessment.ViewModel
     {
         private MainWindow _mainWindow;
         private TestWindow _testWindow;
+        private MerkWindow _merkWindow;
 
         public ICommand ShowMainWindowCommand { get; set; }
         public ICommand ShowSecondWindowCommand { get; set; }
+        public ICommand ShowMerkWindowCommand { get; set; }
 
         public TestWindowManagerViewModel()
         {
             _mainWindow = new MainWindow();
             _testWindow = new TestWindow();
+            _merkWindow = new MerkWindow();
 
             ShowMainWindowCommand = new RelayCommand(showMainWindow, canShowMainWindow);
             ShowSecondWindowCommand = new RelayCommand(showSecondWindow, canShowSecondWindow);
+            ShowMerkWindowCommand = new RelayCommand(ShowMerkWindow, canShowMerkWindow);
         }
 
         private void showMainWindow()
@@ -43,6 +47,16 @@ namespace PROG6_Assessment.ViewModel
         private bool canShowSecondWindow()
         {
             return _testWindow.IsVisible == false;
+        }
+
+        private void ShowMerkWindow()
+        {
+            _merkWindow.Show();
+        }
+
+        private bool canShowMerkWindow()
+        {
+            return _merkWindow.IsVisible == false;
         }
     }
 }

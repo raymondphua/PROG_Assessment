@@ -57,7 +57,8 @@ namespace PROG6_Assessment.ViewModel
             merk.Merknaam = SelectedMerk.Merknaam;
 
             var addMerk = merk.ConvertToMerk(merk);
-            //Merken.Add(merk);
+
+            Merken.Add(merk);
             merkRepository.Create(addMerk);
         }
 
@@ -101,10 +102,10 @@ namespace PROG6_Assessment.ViewModel
         // ---------------- Delete Merk ---------------- //
         private void DeleteMerk()
         {
-            //Merken.Remove(SelectedMerk);
             var deleteMerk = SelectedMerk.ConvertToMerk(SelectedMerk);
 
             merkRepository.Delete(deleteMerk);
+            Merken.Remove(SelectedMerk);
 
             SelectedMerk = new MerkViewModel();
         }

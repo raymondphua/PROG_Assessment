@@ -19,6 +19,8 @@ namespace PROG6_Assessment.ViewModel
 
         private AfdelingViewModel _selectedAfdeling;
         private IAfdelingRepository afdelingRepository;
+        private IProductRepository productRepository;
+        private TestProductOverzicht _productOverzicht;
 
         public AfdelingViewModel SelectedAfdeling
         {
@@ -31,11 +33,14 @@ namespace PROG6_Assessment.ViewModel
         public ICommand EditAfdelingCommand { get; set; }
         public ICommand DeleteAfdelingCommand { get; set; }
         public ICommand ClearAfdelingCommand { get; set; }
+        public ICommand ShowProductsCommand { get; set; }
 
         // Constructor
         public AfdelingListViewModel()
         {
+            _productOverzicht = new TestProductOverzicht();
             afdelingRepository = new AfdelingRepository();
+            productRepository = new ProductRepository();
 
             var afdelingList = afdelingRepository.GetAll().Select(s => new AfdelingViewModel(s));
 
@@ -58,6 +63,7 @@ namespace PROG6_Assessment.ViewModel
             var addAfdeling = afdeling.ConvertToAfdeling(afdeling);
 
             afdelingRepository.Create(addAfdeling);
+            Afdelingen.Add(afdeling);
         }
 
         private bool CanAddAfdeling()
@@ -100,6 +106,7 @@ namespace PROG6_Assessment.ViewModel
             Afdeling removeAfdeling = SelectedAfdeling.ConvertToAfdeling(SelectedAfdeling);
 
             afdelingRepository.Delete(removeAfdeling);
+            Afdelingen.Remove(SelectedAfdeling);
 
             SelectedAfdeling = new AfdelingViewModel();
         }
@@ -118,6 +125,16 @@ namespace PROG6_Assessment.ViewModel
         private bool CanClear()
         {
             return true;
+        }
+
+        // ---------------- Product Overzicht ---------------- //
+        private void ShowProductOverzicht()
+        {
+            _productOverzicht.Show();
+        }
+        private bool canShowProductOverzicht()
+        {
+            return _productOverzicht.IsVisible == false;
         }
     }
 }

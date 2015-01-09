@@ -35,6 +35,8 @@ namespace PROG6_Assessment.ViewModel
             SimpleIoc.Default.Register<AfdelingListViewModel>();
             SimpleIoc.Default.Register<ProductListViewModel>();
             SimpleIoc.Default.Register<MerkListViewModel>();
+            SimpleIoc.Default.Register<AfdelingOverzichtViewModel>();
+            SimpleIoc.Default.Register<AllListViewModel>();
 
             //test
             SimpleIoc.Default.Register<TestWindowManagerViewModel>();
@@ -45,6 +47,14 @@ namespace PROG6_Assessment.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<AfdelingListViewModel>();
+            }
+        }
+
+        public AfdelingOverzichtViewModel AfdelingOverzicht
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AfdelingOverzichtViewModel>();
             }
         }
 
@@ -71,6 +81,14 @@ namespace PROG6_Assessment.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<TestWindowManagerViewModel>();
+            }
+        }
+
+        public AllListViewModel All
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AllListViewModel>();
             }
         }
         public static void Cleanup()

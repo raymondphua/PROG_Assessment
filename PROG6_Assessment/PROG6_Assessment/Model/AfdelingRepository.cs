@@ -13,6 +13,11 @@ namespace PROG6_Assessment.Model
     {
         private AppieContext dbContext;
 
+        public AfdelingRepository()
+        {
+            dbContext = new AppieContext();
+        }
+
         public List<Afdeling> GetAll()
         {
             return dbContext.Afdelingen.ToList();
@@ -36,6 +41,7 @@ namespace PROG6_Assessment.Model
         {
             if (entity != null)
             {
+                var editEntity = dbContext.Afdelingen.SingleOrDefault(x => x.AfdelingId == entity.AfdelingId);
                 dbContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
             }
             Save();
@@ -45,6 +51,7 @@ namespace PROG6_Assessment.Model
         {
             if (entity != null)
             {
+                var deleteEntity = dbContext.Afdelingen.SingleOrDefault(x => x.AfdelingId == entity.AfdelingId);
                 dbContext.Afdelingen.Remove(entity);
             }
             Save();

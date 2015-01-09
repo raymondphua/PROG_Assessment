@@ -60,10 +60,11 @@ namespace PROG6_Assessment.ViewModel
 
             product.ProductNaam = SelectedProduct.ProductNaam;
 
-            //Products.Add(product);
             var addProduct = product.ConvertToProduct(product);
-
             productRepository.Create(addProduct);
+            product.ProductId = addProduct.ProductId;
+
+            Products.Add(product);
         }
 
         private bool CanAddProduct()
@@ -109,6 +110,7 @@ namespace PROG6_Assessment.ViewModel
             var deleteProduct = SelectedProduct.ConvertToProduct(SelectedProduct);
 
             productRepository.Delete(deleteProduct);
+            Products.Remove(SelectedProduct);
 
             SelectedProduct = new ProductViewModel();
         }

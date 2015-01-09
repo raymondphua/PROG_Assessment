@@ -30,6 +30,7 @@ namespace PROG6_Assessment.ViewModel
         {
             var merk = new Merk();
 
+            merk.MerkId = convert.MerkId;
             merk.MerkNaam = convert.Merknaam;
             merk.Producten = convert.Producten;
 

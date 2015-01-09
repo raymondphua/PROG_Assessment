@@ -32,6 +32,7 @@ namespace PROG6_Assessment.ViewModel
         {
             Afdeling afdeling = new Afdeling();
 
+            afdeling.AfdelingId = convert.AfdelingId;
             afdeling.AfdelingNaam = convert.AfdelingNaam;
             afdeling.Producten = convert.Producten;
 

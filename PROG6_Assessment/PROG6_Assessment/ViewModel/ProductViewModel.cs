@@ -12,7 +12,11 @@ namespace PROG6_Assessment.ViewModel
 {
     public class ProductViewModel : INotifyPropertyChanged
     {
-        public int ProductId { get { return _product.ProductId; } }
+        public int ProductId 
+        { 
+            get { return _product.ProductId; }
+            set { _product.ProductId = value; OnPropertyChanged(); }
+        }
 
         public string ProductNaam
         {
@@ -43,6 +47,7 @@ namespace PROG6_Assessment.ViewModel
             return product;
         }
 
+        public object SelectedMerk { get; set; }
 
         private Product _product;
 
