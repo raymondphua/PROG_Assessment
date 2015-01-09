@@ -27,7 +27,7 @@ namespace PROG6_Assessment.Model
             using (var context = new AppieContext())
             {
                 products = context.Producten.ToList();
-            }
+        }
             return products;
         }
 
@@ -37,7 +37,7 @@ namespace PROG6_Assessment.Model
             using (var context = new AppieContext())
             {
                 product = context.Producten.Find(id);
-            }
+        }
 
             return product;
         }
@@ -46,8 +46,8 @@ namespace PROG6_Assessment.Model
         {
             using (var context = new AppieContext())
             {
-                if (entity != null)
-                {
+            if (entity != null)
+            {
                     context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
                     context.Producten.Add(entity);
                     context.SaveChanges();
@@ -59,12 +59,10 @@ namespace PROG6_Assessment.Model
         {
             using (var context = new AppieContext())
             {
-                if (entity != null)
-                {
-                    //context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
-                    context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
-                    context.SaveChanges();
-                }
+            if (entity != null)
+            {
+                var editEntity = dbContext.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
+                dbContext.Entry(editEntity).State = System.Data.Entity.EntityState.Modified;
             }
         }
 
@@ -72,11 +70,10 @@ namespace PROG6_Assessment.Model
         {
             using (var context = new AppieContext())
             {
-                if (entity != null)
-                {
-                    context.Producten.Remove(entity);
-                    context.SaveChanges();
-                }
+            if (entity != null)
+            {
+                var removeEntity = dbContext.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
+                dbContext.Producten.Remove(removeEntity);
             }
         }
 
