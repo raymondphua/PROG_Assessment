@@ -59,6 +59,7 @@ namespace PROG6_Assessment.Model
                 if (entity != null)
                 {
                     //context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                    var editEntity = context.Afdelingen.SingleOrDefault(x => x.AfdelingId == entity.AfdelingId);
                     context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
                 }
@@ -71,6 +72,7 @@ namespace PROG6_Assessment.Model
             {
                 if (entity != null)
                 {
+                    var editEntity = context.Afdelingen.SingleOrDefault(x => x.AfdelingId == entity.AfdelingId);
                     context.Afdelingen.Remove(entity);
                     context.SaveChanges();
                 }

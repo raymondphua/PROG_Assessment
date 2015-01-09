@@ -65,6 +65,7 @@ namespace PROG6_Assessment.Model
                 if (entity != null)
                 {
                     //context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                    var editEntity = context.Merken.SingleOrDefault(x => x.MerkId == entity.MerkId);
                     context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
                 }
@@ -77,7 +78,8 @@ namespace PROG6_Assessment.Model
             {
                 if (entity != null)
                 {
-                    context.Merken.Remove(entity);
+                    var deleteEntity = context.Merken.SingleOrDefault(x => x.MerkId == entity.MerkId);
+                    context.Merken.Remove(deleteEntity);
                     context.SaveChanges();
                 }
             }

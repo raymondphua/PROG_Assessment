@@ -37,7 +37,7 @@ namespace PROG6_Assessment.Model
             using (var context = new AppieContext())
             {
                 product = context.Producten.Find(id);
-        }
+            }
 
             return product;
         }
@@ -59,10 +59,13 @@ namespace PROG6_Assessment.Model
         {
             using (var context = new AppieContext())
             {
-            if (entity != null)
-            {
-                var editEntity = dbContext.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
-                dbContext.Entry(editEntity).State = System.Data.Entity.EntityState.Modified;
+                if (entity != null)
+                {
+                    //context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                    var editEntity = context.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
+                    context.Entry(editEntity).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -70,10 +73,11 @@ namespace PROG6_Assessment.Model
         {
             using (var context = new AppieContext())
             {
-            if (entity != null)
-            {
-                var removeEntity = dbContext.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
-                dbContext.Producten.Remove(removeEntity);
+                if (entity != null)
+                {
+                    var removeEntity = context.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
+                    context.Producten.Remove(removeEntity);
+                }
             }
         }
 
