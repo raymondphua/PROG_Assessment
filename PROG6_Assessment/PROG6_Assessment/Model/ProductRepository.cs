@@ -22,41 +22,63 @@ namespace PROG6_Assessment.Model
 
         public List<Product> GetAll()
         {
-            return dbContext.Producten.ToList();
+            List<Product> products = null;
+
+            using (var context = new AppieContext())
+            {
+                products = context.Producten.ToList();
+        }
+            return products;
         }
 
         public Product Find(int id)
         {
-            return dbContext.Producten.Find(id);
+            Product product = null;
+            using (var context = new AppieContext())
+            {
+                product = context.Producten.Find(id);
+            }
+
+            return product;
         }
 
         public void Create(Product entity)
         {
+            using (var context = new AppieContext())
+            {
             if (entity != null)
             {
-                dbContext.Producten.Add(entity);
+                    context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                    context.Producten.Add(entity);
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Update(Product entity)
         {
-            if (entity != null)
+            using (var context = new AppieContext())
             {
-                var editEntity = dbContext.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
-                dbContext.Entry(editEntity).State = System.Data.Entity.EntityState.Modified;
+                if (entity != null)
+                {
+                    //context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                    var editEntity = context.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
+                    context.Entry(editEntity).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Delete(Product entity)
         {
-            if (entity != null)
+            using (var context = new AppieContext())
             {
-                var removeEntity = dbContext.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
-                dbContext.Producten.Remove(removeEntity);
+                if (entity != null)
+                {
+                    var removeEntity = context.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
+                    context.Producten.Remove(removeEntity);
+                }
             }
-            Save();
         }
 
         public void Save()

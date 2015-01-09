@@ -20,41 +20,68 @@ namespace PROG6_Assessment.Model
 
         public List<Afdeling> GetAll()
         {
-            return dbContext.Afdelingen.ToList();
+            List<Afdeling> afdelingen = new List<Afdeling>();
+
+            using (var context = new AppieContext())
+            {
+                afdelingen = context.Afdelingen.ToList();
+        }
+            return afdelingen;
         }
 
         public Afdeling Find(int id)
         {
-            return dbContext.Afdelingen.Find(id);
+            Afdeling afdeling = null;
+            using (var context = new AppieContext())
+            {
+                afdeling = context.Afdelingen.Find(id);
+        }
+
+            return afdeling;
         }
 
         public void Create(Afdeling entity)
         {
+            using (var context = new AppieContext())
+            {
             if (entity != null)
             {
-                dbContext.Afdelingen.Add(entity);
+                    foreach (var item in entity.Producten)
+                    {
+                        context.Entry(entity).State = System.Data.Entity.EntityState.Unchanged;
+                    }
+
+                    context.Afdelingen.Add(entity);
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Update(Afdeling entity)
         {
+            using (var context = new AppieContext())
+            {
             if (entity != null)
             {
-                var editEntity = dbContext.Afdelingen.SingleOrDefault(x => x.AfdelingId == entity.AfdelingId);
-                dbContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                    //context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                    var editEntity = context.Afdelingen.SingleOrDefault(x => x.AfdelingId == entity.AfdelingId);
+                    context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Delete(Afdeling entity)
         {
+            using (var context = new AppieContext())
+            {
             if (entity != null)
             {
-                var deleteEntity = dbContext.Afdelingen.SingleOrDefault(x => x.AfdelingId == entity.AfdelingId);
-                dbContext.Afdelingen.Remove(entity);
+                    var editEntity = context.Afdelingen.SingleOrDefault(x => x.AfdelingId == entity.AfdelingId);
+                    context.Afdelingen.Remove(entity);
+                    context.SaveChanges();
+                }
             }
-            Save();
         }
 
         public void Save()
