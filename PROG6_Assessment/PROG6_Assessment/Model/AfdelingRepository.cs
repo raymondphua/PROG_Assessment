@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace PROG6_Assessment.Model
 {
@@ -24,8 +25,10 @@ namespace PROG6_Assessment.Model
 
             using (var context = new AppieContext())
             {
-                afdelingen = context.Afdelingen.ToList();
-        }
+                afdelingen = context.Afdelingen
+                    .Include(x => x.Producten)   
+                    .ToList();
+            }
             return afdelingen;
         }
 
@@ -35,7 +38,7 @@ namespace PROG6_Assessment.Model
             using (var context = new AppieContext())
             {
                 afdeling = context.Afdelingen.Find(id);
-        }
+            }
 
             return afdeling;
         }
@@ -44,11 +47,11 @@ namespace PROG6_Assessment.Model
         {
             using (var context = new AppieContext())
             {
-            if (entity != null)
-            {
+                if (entity != null)
+                {
                     foreach (var item in entity.Producten)
                     {
-                        context.Entry(entity).State = System.Data.Entity.EntityState.Unchanged;
+                        context.Entry(entity).State = EntityState.Unchanged;
                     }
 
                     context.Afdelingen.Add(entity);
@@ -61,11 +64,13 @@ namespace PROG6_Assessment.Model
         {
             using (var context = new AppieContext())
             {
-            if (entity != null)
-            {
-                    //context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                if (entity != null)
+                {
                     var editEntity = context.Afdelingen.SingleOrDefault(x => x.AfdelingId == entity.AfdelingId);
-                    context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+
+                    editEntity.AfdelingId = entity.AfdelingId;
+                    editEntity.AfdelingNaam = entity.AfdelingNaam;
+
                     context.SaveChanges();
                 }
             }
@@ -75,10 +80,11 @@ namespace PROG6_Assessment.Model
         {
             using (var context = new AppieContext())
             {
-            if (entity != null)
-            {
-                    var editEntity = context.Afdelingen.SingleOrDefault(x => x.AfdelingId == entity.AfdelingId);
-                    context.Afdelingen.Remove(entity);
+                if (entity != null)
+                {
+                    var removeEntity = context.Afdelingen.SingleOrDefault(x => x.AfdelingId == entity.AfdelingId);
+
+                    context.Afdelingen.Remove(removeEntity);
                     context.SaveChanges();
                 }
             }

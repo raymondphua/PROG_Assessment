@@ -1,21 +1,20 @@
 ﻿<Window x:Class="PROG6_Assessment.TestWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="TestWindow" Height="350" Width="525"
-        
-        DataContext="{Binding Afdeling, Source={StaticResource Locator}}">
+        Title="TestWindow" Height="400" Width="525"
+        Closing="Window_Closing"
+        DataContext="{Binding All, Source={StaticResource Locator}}">
 
     <StackPanel>
         <TextBlock Text="Afdeling lijst" FontSize="28" />
-        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedAfdeling}" ItemsSource="{Binding Afdelingen}" Margin="5">
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding AfdelingList.SelectedAfdeling}" ItemsSource="{Binding AfdelingList.Afdelingen}" Margin="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding AfdelingId}" Width="100" />
-                <DataGridTextColumn Header="Afdeling" Binding="{Binding AfdelingNaam}" Width="250" />
-                <DataGridTextColumn Header="Product" Binding="{Binding Producten}" Width="*" />
+                <DataGridTextColumn Header="Id" Binding="{Binding AfdelingId}" Width="20" />
+                <DataGridTextColumn Header="Afdeling" Binding="{Binding AfdelingNaam}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBlock Text="Create/Update/Delete Product" Margin="5"  FontSize="28" />
+        <TextBlock Text="Create/Update/Delete Afdeling" Margin="5"  FontSize="28" />
 
         <Grid Margin="5,20,0,0">
             <Grid.ColumnDefinitions>
@@ -27,17 +26,24 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Afdeling naam:" Grid.Column="0" Grid.Row="0" />
-            <TextBox MaxLength="50" Grid.Column="1" Grid.Row="0"  Text="{Binding Path=SelectedAfdeling.AfdelingNaam, Mode=TwoWay}" />
+            <TextBox MaxLength="50" Grid.Column="1" Grid.Row="0"  Text="{Binding Path=AfdelingList.SelectedAfdeling.AfdelingNaam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <!--<ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="24.2,35,0,-34.2" VerticalAlignment="Top" Width="120" Height="24" ItemsSource="{Binding ProductList.ProductenNogGeenAfdeling}" SelectedItem="{Binding AfdelingList.SelectedAfdeling.SelectedProduct}" DisplayMemberPath="ProductNaam" />
 
-            <!-- <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="230,0,-149,0" VerticalAlignment="Top" Width="120" Height="24" ItemsSource="{Binding Afdelingen}" SelectedItem="{Binding Merken.MerkNaam}"/> -->
-            <!-- List van Merken nog komen en of afdeling  -->
+            <Button Content="Product Toevoegen" Command="{Binding AfdelingList.AddProductToAfdelingCommand}" Margin="172.2,35,-87.4,-35.2" Grid.Column="1" />-->
 
         </Grid>
+        <!--<DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding AfdelingList.GekozenProducten}" Margin="159,50,159.4,5" Width="200">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Toegevoegde Producten" Binding="{Binding ProductNaam}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>-->
 
-        <Button Content="Add" Command="{Binding AddAfdelingCommand}" Width="100"  HorizontalAlignment="Left" Margin="5,20,0,0"/>
-        <Button Content="Update" Command="{Binding EditAfdelingCommand}" Width="100" Margin="111,-20,306,0"/>
-        <Button Content="Delete" Command="{Binding DeleteAfdelingCommand}" Width="100" Margin="216,-20,201,0"/>
-        <Button Content="Clear" Command="{Binding ClearAfdelingCommand}" Width="100" Margin="321,-20,96,0"/>
+
+        <Button Content="Add" Command="{Binding AfdelingList.AddAfdelingCommand}" Width="102"  HorizontalAlignment="Left" Margin="5,60,0,0"/>
+        <Button Content="Update" Command="{Binding AfdelingList.EditAfdelingCommand}" Width="100" Margin="111,-20,306,0"/>
+        <Button Content="Delete" Command="{Binding AfdelingList.DeleteAfdelingCommand}" Width="100" Margin="216,-20,201,0"/>
+        <Button Content="Clear" Command="{Binding AfdelingList.ClearAfdelingCommand}" Width="100" Margin="321,-20,96,0"/>
+
     </StackPanel>
 </Window>
 

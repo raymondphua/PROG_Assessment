@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace PROG6_Assessment.Model
 {
@@ -22,13 +23,13 @@ namespace PROG6_Assessment.Model
 
         public List<Product> GetAll()
         {
-            List<Product> products = null;
-
             using (var context = new AppieContext())
             {
-                products = context.Producten.ToList();
-        }
-            return products;
+                return context.Producten
+                    .Include(x => x.Merk)
+                    .Include(x => x.Afdeling)
+                    .ToList();
+            }
         }
 
         public Product Find(int id)
@@ -46,9 +47,10 @@ namespace PROG6_Assessment.Model
         {
             using (var context = new AppieContext())
             {
-            if (entity != null)
-            {
-                    context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                if (entity != null)
+                {
+                    context.Entry(entity.Merk).State = EntityState.Unchanged;
+                    context.Entry(entity.Afdeling).State = EntityState.Unchanged;
                     context.Producten.Add(entity);
                     context.SaveChanges();
                 }
@@ -61,9 +63,22 @@ namespace PROG6_Assessment.Model
             {
                 if (entity != null)
                 {
-                    //context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
+                    if (entity.Merk != null)
+                    {
+                        context.Entry(entity.Merk).State = EntityState.Unchanged;
+                    }
+                    if (entity.Afdeling != null)
+                    {
+                        context.Entry(entity.Afdeling).State = EntityState.Unchanged;
+                    }
                     var editEntity = context.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
-                    context.Entry(editEntity).State = System.Data.Entity.EntityState.Modified;
+
+                    editEntity.ProductNaam = entity.ProductNaam;
+                    editEntity.Merk = entity.Merk;
+                    editEntity.Afdeling = entity.Afdeling;
+                    editEntity.Prijs = entity.Prijs;
+                    //context.Entry(editEntity).CurrentValues.SetValues(entity);
+
                     context.SaveChanges();
                 }
             }
@@ -77,6 +92,7 @@ namespace PROG6_Assessment.Model
                 {
                     var removeEntity = context.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
                     context.Producten.Remove(removeEntity);
+                    context.SaveChanges();
                 }
             }
         }

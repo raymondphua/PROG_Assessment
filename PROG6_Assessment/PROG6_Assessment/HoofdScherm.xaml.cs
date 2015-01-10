@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROG6_Assessment.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,20 @@ using System.Windows.Shapes;
 namespace PROG6_Assessment
 {
     /// <summary>
-    /// Interaction logic for TestProductOverzicht.xaml
+    /// Interaction logic for HoofdScherm.xaml
     /// </summary>
-    public partial class TestProductOverzicht : Window
+    public partial class HoofdScherm : Window
     {
-        public TestProductOverzicht()
+        public HoofdScherm()
         {
             InitializeComponent();
+            Closing += (s, e) => ViewModelLocator.Cleanup();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visibility = Visibility.Hidden;
         }
     }
 }

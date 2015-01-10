@@ -1,19 +1,17 @@
-﻿<Window x:Class="PROG6_Assessment.TestAfdelingOverzicht"
+﻿<Window x:Class="PROG6_Assessment.AlleAfdelingenWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="TestAfdelingOverzicht" Height="350" Width="525"
+        Title="AlleAfdelingenWindow" Height="300" Width="525"
         Closing="Window_Closing"
         DataContext="{Binding All, Source={StaticResource Locator}}">
 
     <StackPanel>
-        <TextBlock Text="Afdeling overzicht" FontSize="28" />
+        <TextBlock Text="Alle Afdelingen overzicht" FontSize="28" />
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedAfdeling}" ItemsSource="{Binding AfdelingList.Afdelingen}" Margin="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding AfdelingId}" Width="100"/>
                 <DataGridTextColumn Header="Afdeling" Binding="{Binding AfdelingNaam}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-
-        <Button Content="Toon Producten van gekozen afdeling" Command="{Binding ShowProductenCommand}" Width="236"  HorizontalAlignment="Left" Margin="5,60,0,0" Height="45"/>
     </StackPanel>
 </Window>

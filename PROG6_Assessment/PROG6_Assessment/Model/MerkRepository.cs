@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace PROG6_Assessment.Model
 {
@@ -24,7 +25,9 @@ namespace PROG6_Assessment.Model
 
             using (var context = new AppieContext())
             {
-                merken = context.Merken.ToList();
+                merken = context.Merken
+                    .Include(x => x.Producten)
+                    .ToList();
             }
 
             return merken;
@@ -37,7 +40,6 @@ namespace PROG6_Assessment.Model
             {
                 merk = context.Merken.Find(id);
             }
-
             return merk;
         }
 
@@ -49,7 +51,7 @@ namespace PROG6_Assessment.Model
                 {
                     foreach (var item in entity.Producten)
                     {
-                        context.Entry(entity).State = System.Data.Entity.EntityState.Unchanged;
+                        context.Entry(entity).State = EntityState.Unchanged;
                     }
                     
                     context.Merken.Add(entity);
@@ -64,9 +66,11 @@ namespace PROG6_Assessment.Model
             {
                 if (entity != null)
                 {
-                    //context.Entry(entity.Merk).State = System.Data.Entity.EntityState.Unchanged;
                     var editEntity = context.Merken.SingleOrDefault(x => x.MerkId == entity.MerkId);
-                    context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+
+                    editEntity.MerkId = entity.MerkId;
+                    editEntity.MerkNaam = entity.MerkNaam;
+
                     context.SaveChanges();
                 }
             }
@@ -79,6 +83,7 @@ namespace PROG6_Assessment.Model
                 if (entity != null)
                 {
                     var deleteEntity = context.Merken.SingleOrDefault(x => x.MerkId == entity.MerkId);
+
                     context.Merken.Remove(deleteEntity);
                     context.SaveChanges();
                 }

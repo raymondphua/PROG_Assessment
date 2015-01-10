@@ -7,13 +7,13 @@ namespace PROG6_Assessment.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
-    public sealed partial class updateDeFuckingDatabase : IMigrationMetadata
+    public sealed partial class pleaseUpdateDeFkingDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updateDeFuckingDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(pleaseUpdateDeFkingDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201501081319027_updateDeFuckingDatabase"; }
+            get { return "201501101726208_pleaseUpdateDeFkingDatabase"; }
         }
         
         string IMigrationMetadata.Source

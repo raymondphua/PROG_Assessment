@@ -20,7 +20,7 @@ namespace PROG6_Assessment.ViewModel
         private AfdelingViewModel _selectedAfdeling;
         private IAfdelingRepository afdelingRepository;
         private IProductRepository productRepository;
-        private TestProductOverzicht _productOverzicht;
+        private ProductListViewModel plvm;
 
         public AfdelingViewModel SelectedAfdeling
         {
@@ -33,21 +33,21 @@ namespace PROG6_Assessment.ViewModel
         public ICommand EditAfdelingCommand { get; set; }
         public ICommand DeleteAfdelingCommand { get; set; }
         public ICommand ClearAfdelingCommand { get; set; }
-        public ICommand ShowProductsCommand { get; set; }
 
         // Constructor
         public AfdelingListViewModel()
         {
-            _productOverzicht = new TestProductOverzicht();
             afdelingRepository = new AfdelingRepository();
             productRepository = new ProductRepository();
-
+            plvm = new ProductListViewModel();
+            
             var afdelingList = afdelingRepository.GetAll().Select(s => new AfdelingViewModel(s));
 
             AddAfdelingCommand = new RelayCommand(AddAfdeling, CanAddAfdeling);
             EditAfdelingCommand = new RelayCommand(EditAfdeling, CanEditProduct);
             DeleteAfdelingCommand = new RelayCommand(DeleteAfdeling, CanDeleteAfdeling);
             ClearAfdelingCommand = new RelayCommand(ClearAfdeling, CanClear);
+            //ShowProductsCommand = new RelayCommand(ShowProductOverzicht, canShowProductOverzicht);
 
             Afdelingen = new ObservableCollection<AfdelingViewModel>(afdelingList);
             SelectedAfdeling = new AfdelingViewModel();
@@ -59,10 +59,11 @@ namespace PROG6_Assessment.ViewModel
             var afdeling = new AfdelingViewModel();
 
             afdeling.AfdelingNaam = SelectedAfdeling.AfdelingNaam;
-
             var addAfdeling = afdeling.ConvertToAfdeling(afdeling);
 
             afdelingRepository.Create(addAfdeling);
+
+            afdeling.AfdelingId = addAfdeling.AfdelingId;
             Afdelingen.Add(afdeling);
         }
 
@@ -103,7 +104,23 @@ namespace PROG6_Assessment.ViewModel
         // ---------------- Delete Afdeling ---------------- //
         private void DeleteAfdeling()
         {
-            Afdeling removeAfdeling = SelectedAfdeling.ConvertToAfdeling(SelectedAfdeling);
+            var productList = productRepository.GetAll();
+
+            // als ik een afdeling wil verwijderen moet ik eerst de afdeling verwijderen bij een product, anders krijg je een foreignkey constraint.
+            var foreignKeyFix = new Product();
+
+            foreach(var item in productList)
+            {
+                if (item.Afdeling.AfdelingId == SelectedAfdeling.AfdelingId)
+                {
+                    foreignKeyFix.ProductId = item.ProductId;
+                    foreignKeyFix.ProductNaam = item.ProductNaam;
+                    foreignKeyFix.Afdeling = null;
+                    foreignKeyFix.Merk = item.Merk;
+                    productRepository.Update(foreignKeyFix);
+                }
+            }
+            var removeAfdeling = SelectedAfdeling.ConvertToAfdeling(SelectedAfdeling);
 
             afdelingRepository.Delete(removeAfdeling);
             Afdelingen.Remove(SelectedAfdeling);
@@ -128,13 +145,14 @@ namespace PROG6_Assessment.ViewModel
         }
 
         // ---------------- Product Overzicht ---------------- //
-        private void ShowProductOverzicht()
-        {
-            _productOverzicht.Show();
-        }
-        private bool canShowProductOverzicht()
-        {
-            return _productOverzicht.IsVisible == false;
-        }
+        //private void ShowProductOverzicht()
+        //{
+        //    plvm.GekozenAfdelingShow(SelectedAfdeling.AfdelingId);
+        //    _productOverzicht.Show();
+        //}
+        //private bool canShowProductOverzicht()
+        //{
+        //    return _productOverzicht.IsVisible == false;
+        //}
     }
 }

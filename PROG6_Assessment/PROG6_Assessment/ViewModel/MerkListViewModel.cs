@@ -16,9 +16,11 @@ namespace PROG6_Assessment.ViewModel
     public class MerkListViewModel : ViewModelBase
     {
         public ObservableCollection<MerkViewModel> Merken { get; set; }
+        public ObservableCollection<MerkViewModel> MerkGekozenProduct { get; set; }
 
         private MerkViewModel _selectedMerk;
         private IMerkRepository merkRepository;
+        private IProductRepository productRepository;
 
         public MerkViewModel SelectedMerk 
         { 
@@ -35,7 +37,7 @@ namespace PROG6_Assessment.ViewModel
         // Constructor
         public MerkListViewModel()
         {
-            //this.merkRepository = new DummyMerkRepository();
+            productRepository = new ProductRepository();
             merkRepository = new MerkRepository();
             var merkList = merkRepository.GetAll().Select(s => new MerkViewModel(s));
 
@@ -45,6 +47,7 @@ namespace PROG6_Assessment.ViewModel
             ClearMerkCommand = new RelayCommand(ClearMerk, CanClear);
 
             Merken = new ObservableCollection<MerkViewModel>(merkList);
+            MerkGekozenProduct = new ObservableCollection<MerkViewModel>();
             SelectedMerk = new MerkViewModel();
         }
 
@@ -55,11 +58,12 @@ namespace PROG6_Assessment.ViewModel
             var merk = new MerkViewModel();
 
             merk.Merknaam = SelectedMerk.Merknaam;
-
             var addMerk = merk.ConvertToMerk(merk);
 
-            Merken.Add(merk);
             merkRepository.Create(addMerk);
+
+            merk.MerkId = addMerk.MerkId;
+            Merken.Add(merk);
         }
 
         private bool CanAddMerk()
@@ -79,8 +83,6 @@ namespace PROG6_Assessment.ViewModel
         // ---------------- Edit Merk ---------------- //
         private void EditMerk()
         {
-            // var merk = SelectedProduct;
-
             Merk updateMerk = SelectedMerk.ConvertToMerk(SelectedMerk);
             merkRepository.Update(updateMerk);
         }
@@ -102,6 +104,20 @@ namespace PROG6_Assessment.ViewModel
         // ---------------- Delete Merk ---------------- //
         private void DeleteMerk()
         {
+            var productList = productRepository.GetAll();
+            var foreignKeyFix = new Product();
+
+            foreach (var item in productList)
+            {
+                if (item.Merk.MerkId == SelectedMerk.MerkId)
+                {
+                    foreignKeyFix.ProductId = item.ProductId;
+                    foreignKeyFix.ProductNaam = item.ProductNaam;
+                    foreignKeyFix.Afdeling = item.Afdeling;
+                    foreignKeyFix.Merk = null;
+                    productRepository.Update(foreignKeyFix);
+                }
+            }
             var deleteMerk = SelectedMerk.ConvertToMerk(SelectedMerk);
 
             merkRepository.Delete(deleteMerk);
@@ -124,6 +140,22 @@ namespace PROG6_Assessment.ViewModel
         private bool CanClear()
         {
             return true;
+        }
+
+        public void GekozenMerkShow(int id)
+        {
+            foreach (var item in Merken)
+            {
+                if (item.MerkId == id)
+                {
+                    MerkViewModel m = new MerkViewModel();
+
+                    m.MerkId = item.MerkId;
+                    m.Merknaam = item.Merknaam;
+ 
+                    MerkGekozenProduct.Add(m);
+                }
+            }
         }
     }
 }

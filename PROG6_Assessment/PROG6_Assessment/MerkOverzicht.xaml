@@ -1,0 +1,17 @@
+﻿<Window x:Class="PROG6_Assessment.MerkOverzicht"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MerkOverzicht" Height="300" Width="525"
+        Closing="Window_Closing"
+        DataContext="{Binding All, Source={StaticResource Locator}}">
+
+    <StackPanel>
+        <TextBlock Text="Alle Merken Lijst" FontSize="28" />
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding MerkList.SelectedMerk}" ItemsSource="{Binding MerkList.MerkGekozenProduct}" Margin="5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding MerkId}" Width="20" />
+                <DataGridTextColumn Header="Merk" Binding="{Binding Merknaam}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Window>

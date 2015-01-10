@@ -1,5 +1,4 @@
-﻿using PROG6_Assessment.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,14 +15,13 @@ using System.Windows.Shapes;
 namespace PROG6_Assessment
 {
     /// <summary>
-    /// Interaction logic for TestAfdelingOverzicht.xaml
+    /// Interaction logic for AlleAfdelingenWindow.xaml
     /// </summary>
-    public partial class TestAfdelingOverzicht : Window
+    public partial class AlleAfdelingenWindow : Window
     {
-        public TestAfdelingOverzicht()
+        public AlleAfdelingenWindow()
         {
             InitializeComponent();
-            Closing += (s, e) => ViewModelLocator.Cleanup();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

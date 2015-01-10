@@ -13,7 +13,10 @@ namespace PROG6_Assessment.ViewModel
     public class MerkViewModel : INotifyPropertyChanged
     {
 
-        public int MerkId { get { return _merk.MerkId; } }
+        public int MerkId { 
+            get { return _merk.MerkId; }
+            set { _merk.MerkId = value; OnPropertyChanged(); }
+        }
 
         public string Merknaam 
         { 

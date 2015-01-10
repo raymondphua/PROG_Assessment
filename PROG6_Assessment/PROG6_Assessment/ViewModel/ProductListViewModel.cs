@@ -16,11 +16,13 @@ namespace PROG6_Assessment.ViewModel
     public class ProductListViewModel : ViewModelBase
     {
         public ObservableCollection<ProductViewModel> Products { get; set; }
+        public ObservableCollection<ProductViewModel> ProductenGekozenAfdeling { get; set; }
 
         private ProductViewModel _selectedProduct;
         private IProductRepository productRepository;
         private IMerkRepository merkRepository;
-
+        private IAfdelingRepository afdelingRepository;
+        
         public ProductViewModel SelectedProduct 
         {
             get { return _selectedProduct; }
@@ -37,18 +39,20 @@ namespace PROG6_Assessment.ViewModel
         // Constructor
         public ProductListViewModel()
         {
-            //productRepository = new DummyProductRepository();
             productRepository = new ProductRepository();
             merkRepository = new MerkRepository();
+            afdelingRepository = new AfdelingRepository();
 
-            var productList = productRepository.GetAll().Select(s => new ProductViewModel(s, merkRepository.GetAll()));
+            var productList = productRepository.GetAll().Select(s => new ProductViewModel(s));
 
             AddProductCommand = new RelayCommand(AddNewProduct, CanAddProduct);
             EditProductCommand = new RelayCommand(EditProduct, CanEditProduct);
             DeleteProductCommand = new RelayCommand(DeleteProduct, CanDeleteProduct);
             ClearProductCommand = new RelayCommand(ClearProduct, CanClear);
-
+            
             Products = new ObservableCollection<ProductViewModel>(productList);
+            ProductenGekozenAfdeling = new ObservableCollection<ProductViewModel>();
+
             SelectedProduct = new ProductViewModel();
         }
 
@@ -58,12 +62,19 @@ namespace PROG6_Assessment.ViewModel
         {
             var product = new ProductViewModel();
 
+            // merk + afdeling ophalen.
+            MerkViewModel merk = (MerkViewModel)SelectedProduct.SelectedMerk;
+            AfdelingViewModel afdeling = (AfdelingViewModel)SelectedProduct.SelectedAfdeling;
+
             product.ProductNaam = SelectedProduct.ProductNaam;
+            product.Prijs = SelectedProduct.Prijs;
+            product.Merk = merkRepository.Find(merk.MerkId);
+            product.Afdeling = afdelingRepository.Find(afdeling.AfdelingId);
 
             var addProduct = product.ConvertToProduct(product);
             productRepository.Create(addProduct);
-            product.ProductId = addProduct.ProductId;
 
+            product.ProductId = addProduct.ProductId;
             Products.Add(product);
         }
 
@@ -77,6 +88,14 @@ namespace PROG6_Assessment.ViewModel
             {
                 return false;
             }
+            if (SelectedProduct.SelectedAfdeling == null)
+            {
+                return false;
+            }
+            if (SelectedProduct.SelectedMerk == null)
+            {
+                return false;
+            }
 
             return true;
         }
@@ -84,9 +103,19 @@ namespace PROG6_Assessment.ViewModel
         // ---------------- Edit Product ---------------- //
         private void EditProduct()
         {
-            // var product = SelectedProduct;
+            var product = new ProductViewModel();
 
-            Product updateProduct = SelectedProduct.ConvertToProduct(SelectedProduct);
+            // merk + afdeling ophalen.
+            MerkViewModel merk = (MerkViewModel)SelectedProduct.SelectedMerk;
+            AfdelingViewModel afdeling = (AfdelingViewModel)SelectedProduct.SelectedAfdeling;
+
+            product.ProductId = SelectedProduct.ProductId;
+            product.ProductNaam = SelectedProduct.ProductNaam;
+            product.Prijs = SelectedProduct.Prijs;
+            product.Merk = merkRepository.Find(merk.MerkId);
+            product.Afdeling = afdelingRepository.Find(afdeling.AfdelingId);
+
+            Product updateProduct = product.ConvertToProduct(product);
             productRepository.Update(updateProduct);
         }
 
@@ -129,6 +158,26 @@ namespace PROG6_Assessment.ViewModel
         private bool CanClear()
         {
             return true;
+        }
+
+        // lijst van gekozen afdeling id 
+        public void GekozenAfdelingShow(int id)
+        {
+            foreach (var item in Products)
+            {
+                if (item.Afdeling != null)
+                {
+                    if (item.Afdeling.AfdelingId == id)
+                    {
+                        ProductViewModel p = new ProductViewModel();
+
+                        p.ProductId = item.ProductId;
+                        p.ProductNaam = item.ProductNaam;
+                        p.Merk = item.Merk;
+                        ProductenGekozenAfdeling.Add(p);
+                    }
+                }
+            }
         }
     }
 }

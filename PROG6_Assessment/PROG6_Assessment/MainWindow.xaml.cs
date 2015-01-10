@@ -22,8 +22,14 @@ namespace PROG6_Assessment
     {
         public MainWindow()
         {
-            //ProductListViewModel test = new ProductListViewModel();
             InitializeComponent();
+            Closing += (s, e) => ViewModelLocator.Cleanup();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visibility = Visibility.Hidden;
         }
     }
 }

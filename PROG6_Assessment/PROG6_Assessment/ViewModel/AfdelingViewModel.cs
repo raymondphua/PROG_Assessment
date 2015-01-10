@@ -14,6 +14,7 @@ namespace PROG6_Assessment.ViewModel
         public int AfdelingId
         {
             get { return _afdeling.AfdelingId; }
+            set { _afdeling.AfdelingId = value; OnPropertyChanged(); }
         }
 
         public string AfdelingNaam
@@ -25,8 +26,8 @@ namespace PROG6_Assessment.ViewModel
         public List<Product> Producten
         {
             get { return _afdeling.Producten.ToList(); }
+            set { _afdeling.Producten = value; OnPropertyChanged(); }
         }
-
 
         public Afdeling ConvertToAfdeling(AfdelingViewModel convert)
         {

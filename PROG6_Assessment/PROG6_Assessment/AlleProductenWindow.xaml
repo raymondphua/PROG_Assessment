@@ -1,18 +1,21 @@
-﻿<Window x:Class="PROG6_Assessment.TestProductOverzicht"
+﻿<Window x:Class="PROG6_Assessment.AlleProductenWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="TestProductOverzicht" Height="325" Width="525"
-         DataContext="{Binding Product, Source={StaticResource Locator}}">
+        Title="AlleProductenWindow" Height="300" Width="525"
+        Closing="Window_Closing"
+        DataContext="{Binding All, Source={StaticResource Locator}}">
 
     <StackPanel>
-        <TextBlock Text="Producten Lijst" FontSize="28" />
-        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedProduct}" ItemsSource="{Binding Products}" Margin="5">
+        <TextBlock Text="Alle Producten Lijst" FontSize="28" />
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding ProductList.SelectedProduct}" ItemsSource="{Binding ProductList.Products}" Margin="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding ProductId}" />
                 <DataGridTextColumn Header="Product" Binding="{Binding ProductNaam}" Width="150" />
+                <DataGridTextColumn Header="Prijs" Binding="{Binding Prijs}" Width="60" />
                 <DataGridTextColumn Header="Afdeling" Binding="{Binding Afdeling.AfdelingNaam}" Width="150" />
                 <DataGridTextColumn Header="Merk" Binding="{Binding Merk.MerkNaam}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>
+    
 </Window>

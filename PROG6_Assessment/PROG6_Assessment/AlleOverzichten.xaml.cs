@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PROG6_Assessment
 {
     /// <summary>
-    /// Interaction logic for TestAfdelingOverzicht.xaml
+    /// Interaction logic for AlleOverzichten.xaml
     /// </summary>
-    public partial class TestAfdelingOverzicht : Window
+    public partial class AlleOverzichten : Window
     {
-        public TestAfdelingOverzicht()
+        public AlleOverzichten()
         {
             InitializeComponent();
             Closing += (s, e) => ViewModelLocator.Cleanup();

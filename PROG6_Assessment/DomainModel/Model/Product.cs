@@ -13,6 +13,8 @@ namespace DomainModel.Model
         public int ProductId { get; set; }
         [Required]
         public string ProductNaam { get; set; }
+        [Required]
+        public int Prijs { get; set; }
         public virtual Afdeling Afdeling { get; set; }
         public virtual Merk Merk { get; set; }
     }

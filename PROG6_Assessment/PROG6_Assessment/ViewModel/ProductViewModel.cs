@@ -23,18 +23,23 @@ namespace PROG6_Assessment.ViewModel
             get { return _product.ProductNaam; }
             set { _product.ProductNaam = value; OnPropertyChanged(); }
         }
-
+        
+        public int Prijs
+        {
+            get { return _product.Prijs; }
+            set { _product.Prijs = value; OnPropertyChanged(); }
+        }
         public Afdeling Afdeling
         {
             get { return _product.Afdeling; }
+            set { _product.Afdeling = value; OnPropertyChanged(); }
         }
 
         public Merk Merk
         {
             get { return _product.Merk; }
+            set { _product.Merk = value; OnPropertyChanged(); }
         }
-
-        public List<Merk> Merken { get; set; }
 
         public Product ConvertToProduct(ProductViewModel convert)
         {
@@ -42,12 +47,15 @@ namespace PROG6_Assessment.ViewModel
 
             product.ProductId = convert.ProductId;
             product.ProductNaam = convert.ProductNaam;
+            product.Prijs = convert.Prijs;
             product.Afdeling = convert.Afdeling;
             product.Merk = convert.Merk;
             return product;
         }
 
         public object SelectedMerk { get; set; }
+
+        public object SelectedAfdeling { get; set; }
 
         private Product _product;
 
@@ -56,10 +64,9 @@ namespace PROG6_Assessment.ViewModel
             this._product = new Product();
         }
 
-        public ProductViewModel(Product product, List<Merk> merken)
+        public ProductViewModel(Product product)
         {
             this._product = product;
-            Merken = merken;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
