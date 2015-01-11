@@ -17,12 +17,20 @@ namespace PROG6_Assessment.ViewModel
     {
         public ObservableCollection<ProductViewModel> Products { get; set; }
         public ObservableCollection<ProductViewModel> ProductenGekozenAfdeling { get; set; }
+        public ObservableCollection<ProductViewModel> AddProducten { get; set; }
 
         private ProductViewModel _selectedProduct;
         private IProductRepository productRepository;
         private IMerkRepository merkRepository;
         private IAfdelingRepository afdelingRepository;
         private IKortingRepository kortingRepository;
+        private double totaalPrijs;
+
+        public double TotaalPrijs
+        {
+            get { return totaalPrijs; }
+            set { totaalPrijs = value; RaisePropertyChanged(); }
+        }
 
         public ProductViewModel SelectedProduct 
         {
@@ -30,12 +38,12 @@ namespace PROG6_Assessment.ViewModel
             set { _selectedProduct = value; RaisePropertyChanged(); }
         }
 
-
         // ICommands
         public ICommand AddProductCommand { get; set; }
         public ICommand EditProductCommand { get; set; }
         public ICommand DeleteProductCommand { get; set; }
         public ICommand ClearProductCommand { get; set; }
+        public ICommand BoodschappenCommand { get; set; }
 
         // Constructor
         public ProductListViewModel()
@@ -51,13 +59,88 @@ namespace PROG6_Assessment.ViewModel
             EditProductCommand = new RelayCommand(EditProduct, CanEditProduct);
             DeleteProductCommand = new RelayCommand(DeleteProduct, CanDeleteProduct);
             ClearProductCommand = new RelayCommand(ClearProduct, CanClear);
-            
+            BoodschappenCommand = new RelayCommand(AddProductBoodschappen, CanAddBoodschappen);
+
             Products = new ObservableCollection<ProductViewModel>(productList);
             ProductenGekozenAfdeling = new ObservableCollection<ProductViewModel>();
+            AddProducten = new ObservableCollection<ProductViewModel>();
+
+            ////Lijstjes = new ObservableCollection<ProductViewModel>();
+            //var item = productRepository.Find(1);
+            //ProductViewModel swag = new ProductViewModel();
+            //swag.ProductId = item.ProductId;
+            //swag.ProductNaam = item.ProductNaam;
+            //swag.Aantal = 1;
+            //AddProducten.Add(swag);
 
             SelectedProduct = new ProductViewModel();
         }
 
+        private void AddProductBoodschappen()
+        {
+            var product = AddProducten.FirstOrDefault(x => x.ProductId == SelectedProduct.ProductId);
+
+            if (product != null)
+            {
+                product.Aantal++;
+            }
+            else
+            {
+                var newProduct = new ProductViewModel();
+                newProduct.ProductId = SelectedProduct.ProductId;
+                newProduct.ProductNaam = SelectedProduct.ProductNaam;
+                newProduct.Prijs = SelectedProduct.Prijs;
+                newProduct.Merken = SelectedProduct.Merken;
+                newProduct.Kortingen = SelectedProduct.Kortingen;
+                newProduct.Aantal = 1;
+                AddProducten.Add(newProduct);
+            }
+
+            BerekenPrijs();
+        }
+
+        private void BerekenPrijs()
+        {
+            // BEGIN MET REKENEN BITCH
+            TotaalPrijs = 0;
+            double x = 0;
+
+            foreach (var item in AddProducten)
+            {
+                //foreach (var merk in item.Merken)
+                //{
+                //    if (merk.Product != null)
+                //    {
+                //        if (merk.Product.ProductId == item.ProductId)
+                //        {
+                //            // prijs van een product van een bepaalde merk
+                //            x = item.Prijs * merk.Multiplier;
+                //        }
+                //    }
+                //}
+                x = item.Prijs;
+                foreach (var korting in item.Kortingen)
+                {
+                    if (korting.Product != null)
+                    {
+                        if (korting.Product.ProductId == item.ProductId)
+                        {
+                            if (DateTime.Now >= korting.StartDatum && DateTime.Now <= korting.EindDatum)
+                            {
+                                x = (item.Prijs * 0.5);
+                            }
+                        }
+                    }
+                }
+
+                TotaalPrijs = TotaalPrijs + (x * item.Aantal);
+            }
+        }
+
+        private bool CanAddBoodschappen()
+        {
+            return true;
+        }
 
         // ---------------- Add Product ---------------- //
         private void AddNewProduct()
@@ -180,6 +263,7 @@ namespace PROG6_Assessment.ViewModel
 
                         foreignKeyFix2.MerkId = item.MerkId;
                         foreignKeyFix2.MerkNaam = item.MerkNaam;
+                        foreignKeyFix2.Multiplier = item.Multiplier;
                         foreignKeyFix2.Product = null;
 
                         merkRepository.Update(foreignKeyFix2);

@@ -24,6 +24,12 @@ namespace PROG6_Assessment.ViewModel
             set { _merk.MerkNaam = value; OnPropertyChanged(); } 
         }
 
+        public double Multiplier
+        {
+            get { return _merk.Multiplier; }
+            set { _merk.Multiplier = value; OnPropertyChanged(); }
+        }
+
         public Product Product
         {
             get { return _merk.Product; }
@@ -37,6 +43,7 @@ namespace PROG6_Assessment.ViewModel
             merk.MerkId = convert.MerkId;
             merk.MerkNaam = convert.Merknaam;
             merk.Product = convert.Product;
+            merk.Multiplier = convert.Multiplier;
 
             return merk;
         }

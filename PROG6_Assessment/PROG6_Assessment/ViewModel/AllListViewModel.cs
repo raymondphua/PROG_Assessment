@@ -23,7 +23,7 @@ namespace PROG6_Assessment.ViewModel
         public ProductListViewModel ProductList { get; set; }
         public AfdelingListViewModel AfdelingList { get; set; }
         public KortingListViewModel KortingList { get; set; }
-        public BoodschappenlijstjeViewModel Lijstje { get; set; }
+        public BoodschappenlijstjeListViewModel Lijstje { get; set; }
 
         public AfdelingViewModel SelectedAfdeling 
         { 
@@ -50,12 +50,7 @@ namespace PROG6_Assessment.ViewModel
             MerkList = new MerkListViewModel();
             ProductList = new ProductListViewModel();
             KortingList = new KortingListViewModel();
-            Lijstje = new BoodschappenlijstjeViewModel();
-
-            DomainModel.Model.Product swag = new DomainModel.Model.Product();
-            swag.ProductNaam = "Aardbei";
-
-            Lijstje.Producten.Add(swag);
+            Lijstje = new BoodschappenlijstjeListViewModel();
 
             ShowProductenCommand = new RelayCommand(ShowProductOverzicht, canShowProductOverzicht);
             ShowMerkenCommand = new RelayCommand(ShowMerkenOverzicht, canShowMerkOverzicht);

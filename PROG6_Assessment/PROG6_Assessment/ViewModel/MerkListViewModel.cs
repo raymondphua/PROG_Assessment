@@ -62,6 +62,7 @@ namespace PROG6_Assessment.ViewModel
 
             merk.Merknaam = SelectedMerk.Merknaam;
             merk.Product = productRepository.Find(p.ProductId);
+            merk.Multiplier = SelectedMerk.Multiplier;
             var addMerk = merk.ConvertToMerk(merk);
 
             merkRepository.Create(addMerk);
@@ -98,6 +99,7 @@ namespace PROG6_Assessment.ViewModel
 
             merk.MerkId = SelectedMerk.MerkId;
             merk.Merknaam = SelectedMerk.Merknaam;
+            merk.Multiplier = SelectedMerk.Multiplier;
 
             if (p == null)
             {
@@ -117,6 +119,7 @@ namespace PROG6_Assessment.ViewModel
                 item.MerkId = merk.MerkId;
                 item.Merknaam = merk.Merknaam;
                 item.Product = merk.Product;
+                item.Multiplier = merk.Multiplier;
             }
         }
 
