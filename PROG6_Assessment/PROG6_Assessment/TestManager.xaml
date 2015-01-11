@@ -12,5 +12,6 @@
         <Button Content="Beheer Producten" Command="{Binding ShowMainWindowCommand }" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" Width="159"/>
         <Button Content="Beheer Merken" Command="{Binding ShowMerkWindowCommand }" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" Width="159"/>
         <Button Content="Beheer Kortingen" Command="{Binding KortingBeheerCommand}" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" Width="159"/>
+        <Button Content="Beheer Recepten" Command="{Binding ReceptBeheerCommand}" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" Width="159"/>
     </StackPanel>
 </Window>

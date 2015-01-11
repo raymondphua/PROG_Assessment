@@ -24,6 +24,9 @@ namespace PROG6_Assessment.ViewModel
         private TestManager beheerScherm;
         private KortingBeheer kortingBeheerScherm;
         private AlleKortingenWindow alleKortingenScherm;
+        private ReceptenWindow receptenwindow;
+        private ReceptCrudWindow receptcrud;
+        private BoodschappenlijstjeViewModel lijstje;
 
         public ICommand ShowMainWindowCommand { get; set; }
         public ICommand ShowSecondWindowCommand { get; set; }
@@ -39,6 +42,8 @@ namespace PROG6_Assessment.ViewModel
         public ICommand BeheerschermCommand { get; set; }
         public ICommand KortingBeheerCommand { get; set; }
         public ICommand AlleKortingenCommand { get; set; }
+        public ICommand ShowReceptenCommand { get; set; }
+        public ICommand ReceptBeheerCommand { get; set; }
         public TestWindowManagerViewModel()
         {
             _mainWindow = new MainWindow();
@@ -59,6 +64,8 @@ namespace PROG6_Assessment.ViewModel
             KortingBeheerCommand = new RelayCommand(KortingBeheerShow, CanShowKortingBeheer);
             AlleKortingenCommand = new RelayCommand(AlleKortingenShow, CanShowAlleKortingen);
             ShowLijstCommand = new RelayCommand(ShowLijstWindow, canShowLijstWindow);
+            ShowReceptenCommand = new RelayCommand(ShowReceptenWindow, CanShowReceptenWindow);
+            ReceptBeheerCommand = new RelayCommand(ShowReceptBeheerWindow, CanShowReceptBeheerWindow);
         }
 
         private void showMainWindow()
@@ -209,6 +216,36 @@ namespace PROG6_Assessment.ViewModel
         {
             alleKortingenScherm = new AlleKortingenWindow();
             return alleKortingenScherm.IsVisible == false;
+        }
+
+        private void ShowReceptenWindow()
+        {
+
+            receptenwindow.Show();
+
+        }
+
+        private bool CanShowReceptenWindow()
+        {
+
+            receptenwindow = new ReceptenWindow();
+            return receptenwindow.IsVisible == false;
+
+        }
+
+        private void ShowReceptBeheerWindow()
+        {
+
+            receptcrud.Show();
+
+        }
+
+        private bool CanShowReceptBeheerWindow()
+        {
+
+            receptcrud = new ReceptCrudWindow();
+            return receptcrud.IsVisible == false;
+
         }
     }
 }
