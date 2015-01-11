@@ -118,6 +118,9 @@
     <Compile Include="KortingBeheer.xaml.cs">
       <DependentUpon>KortingBeheer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LijstScherm.xaml.cs">
+      <DependentUpon>LijstScherm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MerkOverzicht.xaml.cs">
       <DependentUpon>MerkOverzicht.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AfdelingRepository.cs" />
+    <Compile Include="Model\BoodschappenlijstjeRepository.cs" />
     <Compile Include="Model\DummyMerkRepository.cs" />
     <Compile Include="Model\DummyProductRepository.cs" />
     <Compile Include="Model\KortingRepository.cs" />
@@ -161,6 +165,8 @@
     <Compile Include="ViewModel\AfdelingListViewModel.cs" />
     <Compile Include="ViewModel\AfdelingViewModel.cs" />
     <Compile Include="ViewModel\AllListViewModel.cs" />
+    <Compile Include="ViewModel\BoodschappenlijstjeListViewModel.cs" />
+    <Compile Include="ViewModel\BoodschappenlijstjeViewModel.cs" />
     <Compile Include="ViewModel\KortingListViewModel.cs" />
     <Compile Include="ViewModel\KortingViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -195,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="KortingBeheer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LijstScherm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
