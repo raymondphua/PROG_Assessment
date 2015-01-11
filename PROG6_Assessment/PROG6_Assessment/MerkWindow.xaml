@@ -1,0 +1,41 @@
+﻿<Window x:Class="PROG6_Assessment.MerkWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MerkWindow" Height="350" Width="525"
+        Closing="Window_Closing"
+        DataContext="{Binding All, Source={StaticResource Locator}}">
+
+    <StackPanel>
+        <TextBlock Text="Merk lijst" FontSize="28" />
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding MerkList.SelectedMerk}" ItemsSource="{Binding MerkList.Merken}" Margin="5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding MerkId}" Width="20" />
+                <DataGridTextColumn Header="Merk" Binding="{Binding Merknaam}" Width="200" />
+                <DataGridTextColumn Header="Product" Binding="{Binding Product.ProductNaam}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Text="Create/Update/Delete Afdeling" Margin="5"  FontSize="28" />
+
+        <Grid Margin="5,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Merk naam:" Grid.Column="0" Grid.Row="0" />
+            <TextBox MaxLength="50" Grid.Column="1" Grid.Row="0"  Text="{Binding Path=MerkList.SelectedMerk.Merknaam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <ComboBox HorizontalAlignment="Left" Margin="0.2,35,0,-34.2" VerticalAlignment="Top" Width="120" Height="24" ItemsSource="{Binding ProductList.Products}" SelectedItem="{Binding MerkList.SelectedMerk.SelectedProduct}" DisplayMemberPath="ProductNaam" Grid.Column="1" />
+        </Grid>
+
+        <Button Content="Add" Command="{Binding MerkList.AddMerkCommand}" Width="102"  HorizontalAlignment="Left" Margin="5,60,0,0"/>
+        <Button Content="Update" Command="{Binding MerkList.EditMerkCommand}" Width="100" Margin="111,-20,306,0"/>
+        <Button Content="Delete" Command="{Binding MerkList.DeleteMerkCommand}" Width="100" Margin="216,-20,201,0"/>
+        <Button Content="Clear" Command="{Binding MerkList.ClearMerkCommand}" Width="100" Margin="321,-20,96,0"/>
+
+    </StackPanel>
+</Window>
