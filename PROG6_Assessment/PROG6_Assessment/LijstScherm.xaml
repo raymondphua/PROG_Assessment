@@ -10,11 +10,25 @@
         <Label Content="Appie" Foreground="White" FontSize="15" FontFamily="Arial" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="28" Margin="0,-50,0,0" Width="156"/>
 
         <TextBlock Text="Boodschappenlijstje" Foreground="White" HorizontalAlignment="Center" FontSize="28" />
-        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding Lijst}" Margin="5">
+        
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding ProductList.AddProducten}" Margin="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Product" Binding="{Binding SortedProducten}" Width="*" />
-                <DataGridTextColumn Header="Aantal" Binding="{Binding SortedAmmount}" Width="*" />
+                <DataGridTextColumn Header="Product" Binding="{Binding ProductNaam}" Width="*" />
+                <DataGridTextColumn Header="Aantal" Binding="{Binding Aantal}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Totaal prijs:" Foreground="White" Grid.Column="0" Grid.Row="0" />
+            <TextBox MaxLength="50" IsReadOnly="True" Grid.Column="1" Grid.Row="0" Text="{Binding Path=ProductList.TotaalPrijs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0.2,0,110.6,-0.2" />
+        </Grid>
+        
     </StackPanel>
 </Window>

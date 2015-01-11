@@ -64,6 +64,8 @@ namespace PROG6_Assessment.ViewModel
             set { _product.Kortingen = value; OnPropertyChanged(); }
         }
 
+        public int Aantal { get { return _aantal; } set { _aantal = value; OnPropertyChanged(); } }
+        
         public Product ConvertToProduct(ProductViewModel convert)
         {
             Product product = new Product();
@@ -82,7 +84,7 @@ namespace PROG6_Assessment.ViewModel
         public object SelectedAfdeling { get; set; }
 
         private Product _product;
-
+        private int _aantal;
         public ProductViewModel()
         {
             this._product = new Product();
@@ -91,6 +93,7 @@ namespace PROG6_Assessment.ViewModel
         public ProductViewModel(Product product)
         {
             this._product = product;
+            _aantal = 0;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -14,5 +14,6 @@ namespace DomainModel.Model
         [Required]
         public string MerkNaam { get; set; }
         public virtual Product Product { get; set; }
+        public double Multiplier { get; set; }
     }
 }

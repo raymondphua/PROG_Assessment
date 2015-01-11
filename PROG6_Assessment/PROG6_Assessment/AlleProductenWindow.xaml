@@ -18,6 +18,8 @@
                 <DataGridTextColumn Header="Afdeling" Binding="{Binding Afdeling.AfdelingNaam}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button Content="Add to cart" Command="{Binding ProductList.BoodschappenCommand}" Width="102"  HorizontalAlignment="Left" Margin="5,60,0,0"/>
     </StackPanel>
     
 </Window>

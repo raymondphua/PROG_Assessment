@@ -72,6 +72,10 @@ namespace PROG6_Assessment.ViewModel
         {
             _mainWindow.Show();
         }
+        private bool canShowMainWindow()
+        {
+            return _mainWindow.IsVisible == false;
+        }
 
         private void ShowLijstWindow()
         {
@@ -80,12 +84,8 @@ namespace PROG6_Assessment.ViewModel
 
         public bool canShowLijstWindow()
         {
+            _lijstScherm = new LijstScherm();
             return _lijstScherm.IsVisible == false;
-        }
-
-        private bool canShowMainWindow()
-        {
-            return _mainWindow.IsVisible == false;
         }
 
         private void showSecondWindow()

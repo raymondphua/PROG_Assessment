@@ -80,6 +80,7 @@ namespace PROG6_Assessment.Model
 
                     editEntity.MerkNaam = entity.MerkNaam;
                     editEntity.Product = entity.Product;
+                    editEntity.Multiplier = entity.Multiplier;
 
                     context.SaveChanges();
                 }
