@@ -85,7 +85,7 @@ namespace PROG6_Assessment.ViewModel
 
         private void AddReceptToBoodschappenLijst()
         {
-            ProductList.AddReceptList(ReceptListProducten);
+            ProductList.AddReceptList(ProductList.ProductenGekozenRecept.ToList());
         }
 
         private bool CanAddReceptToBoodschappen()

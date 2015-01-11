@@ -19,7 +19,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Toevoegen aan boodschappenlijstje" Command="{Binding ProductList.AddProductCommand}" Margin="10,20,302.4,0"/>
+        <Button Content="Toevoegen aan boodschappenlijstje" Command="{Binding AddReceptToBoodschappen}" Margin="10,20,302.4,0"/>
     </StackPanel>
 
 </Window>
