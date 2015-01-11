@@ -22,6 +22,7 @@ namespace PROG6_Assessment.ViewModel
         private TestAfdelingOverzicht afdelingOverzichtScherm;
         private TestManager beheerScherm;
         private KortingBeheer kortingBeheerScherm;
+        private AlleKortingenWindow alleKortingenScherm;
 
         public ICommand ShowMainWindowCommand { get; set; }
         public ICommand ShowSecondWindowCommand { get; set; }
@@ -35,6 +36,7 @@ namespace PROG6_Assessment.ViewModel
         public ICommand AfdelingOverzichtCommand { get; set; }
         public ICommand BeheerschermCommand { get; set; }
         public ICommand KortingBeheerCommand { get; set; }
+        public ICommand AlleKortingenCommand { get; set; }
         public TestWindowManagerViewModel()
         {
             _mainWindow = new MainWindow();
@@ -53,6 +55,7 @@ namespace PROG6_Assessment.ViewModel
             AfdelingOverzichtCommand = new RelayCommand(AfdelingKlikScherm, CanShowAfdelingKlikScherm);
             BeheerschermCommand = new RelayCommand(BeheerSchermShow, CanShowBeheerScherm);
             KortingBeheerCommand = new RelayCommand(KortingBeheerShow, CanShowKortingBeheer);
+            AlleKortingenCommand = new RelayCommand(AlleKortingenShow, CanShowAlleKortingen);
         }
 
         private void showMainWindow()
@@ -182,6 +185,17 @@ namespace PROG6_Assessment.ViewModel
         {
             kortingBeheerScherm = new KortingBeheer();
             return kortingBeheerScherm.IsVisible == false;
+        }
+
+        private void AlleKortingenShow()
+        {
+            alleKortingenScherm.Show();
+        }
+
+        private bool CanShowAlleKortingen()
+        {
+            alleKortingenScherm = new AlleKortingenWindow();
+            return alleKortingenScherm.IsVisible == false;
         }
     }
 }

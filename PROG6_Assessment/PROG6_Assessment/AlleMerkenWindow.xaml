@@ -10,7 +10,8 @@
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding MerkList.SelectedMerk}" ItemsSource="{Binding MerkList.Merken}" Margin="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding MerkId}" Width="20" />
-                <DataGridTextColumn Header="Merk" Binding="{Binding Merknaam}" Width="*" />
+                <DataGridTextColumn Header="Merk" Binding="{Binding Merknaam}" Width="170" />
+                <DataGridTextColumn Header="Product" Binding="{Binding Product.ProductNaam}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>

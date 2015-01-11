@@ -1,7 +1,7 @@
 ﻿<Window x:Class="PROG6_Assessment.TestManager"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Beheer" Height="230" Width="300"
+        Title="Beheer" Height="240" Width="300"
         Closing="Window_Closing"
         DataContext="{Binding Manager, Source={StaticResource Locator}}">
     <StackPanel Margin="0,0,0,0">

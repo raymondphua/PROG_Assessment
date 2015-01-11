@@ -12,8 +12,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding ProductId}" />
                 <DataGridTextColumn Header="Product" Binding="{Binding ProductNaam}" Width="150" />
                 <DataGridTextColumn Header="Prijs" Binding="{Binding Prijs}" Width="60" />
-                <DataGridTextColumn Header="Afdeling" Binding="{Binding Afdeling.AfdelingNaam}" Width="150" />
-                <DataGridTextColumn Header="Merk" Binding="{Binding Merk.MerkNaam}" Width="*" />
+                <DataGridTextColumn Header="Afdeling" Binding="{Binding Afdeling.AfdelingNaam}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -30,12 +29,12 @@
 
             <TextBlock Text="Product naam:" Grid.Column="0" Grid.Row="0" />
             <TextBox MaxLength="50" Grid.Column="1" Grid.Row="0"  Text="{Binding Path=ProductList.SelectedProduct.ProductNaam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            
+
             <TextBlock Text="Product prijs:" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,30,200.6,-30.2" />
             <TextBox MaxLength="50" Grid.Column="1" Grid.Row="0"  Text="{Binding Path=ProductList.SelectedProduct.Prijs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0.2,25,-0.4,-25.2" />
-            
-            <ComboBox HorizontalAlignment="Left" Margin="0,59,0,-58.2" VerticalAlignment="Top" Width="120" Height="24" ItemsSource="{Binding MerkList.Merken}" Text="{Binding Path=ProductList.SelectedProduct.Merk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ProductList.SelectedProduct.SelectedMerk}" DisplayMemberPath="Merknaam" Grid.ColumnSpan="2" />
-            <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="24.2,59,0,-58.2" VerticalAlignment="Top" Width="120" Height="24" ItemsSource="{Binding AfdelingList.Afdelingen}" SelectedItem="{Binding ProductList.SelectedProduct.SelectedAfdeling}" DisplayMemberPath="AfdelingNaam" />
+
+            <!--<ComboBox HorizontalAlignment="Left" Margin="0,59,0,-58.2" VerticalAlignment="Top" Width="120" Height="24" ItemsSource="{Binding MerkList.Merken}" Text="{Binding Path=ProductList.SelectedProduct.Merk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ProductList.SelectedProduct.SelectedMerk}" DisplayMemberPath="Merknaam" Grid.ColumnSpan="2" />-->
+            <ComboBox HorizontalAlignment="Left" Margin="0.2,60,0,-59.2" VerticalAlignment="Top" Width="120" Height="24" ItemsSource="{Binding AfdelingList.Afdelingen}" SelectedItem="{Binding ProductList.SelectedProduct.SelectedAfdeling}" DisplayMemberPath="AfdelingNaam" Grid.Column="1" />
 
         </Grid>
         <Button Content="Add" Command="{Binding ProductList.AddProductCommand}" Width="100" Margin="8,80,410.4,0"/>

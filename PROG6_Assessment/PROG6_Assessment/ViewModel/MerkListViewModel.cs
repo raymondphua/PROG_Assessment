@@ -57,7 +57,11 @@ namespace PROG6_Assessment.ViewModel
         {
             var merk = new MerkViewModel();
 
+            // haal product op
+            ProductViewModel p = (ProductViewModel)SelectedMerk.SelectedProduct;
+
             merk.Merknaam = SelectedMerk.Merknaam;
+            merk.Product = productRepository.Find(p.ProductId);
             var addMerk = merk.ConvertToMerk(merk);
 
             merkRepository.Create(addMerk);
@@ -72,6 +76,10 @@ namespace PROG6_Assessment.ViewModel
             {
                 return false;
             }
+            if (SelectedMerk.SelectedProduct == null)
+            {
+                return false;
+            }
             if (String.IsNullOrEmpty(SelectedMerk.Merknaam))
             {
                 return false;
@@ -83,8 +91,25 @@ namespace PROG6_Assessment.ViewModel
         // ---------------- Edit Merk ---------------- //
         private void EditMerk()
         {
-            Merk updateMerk = SelectedMerk.ConvertToMerk(SelectedMerk);
+            var merk = new MerkViewModel();
+
+            // product ophalen
+            ProductViewModel p = (ProductViewModel)SelectedMerk.SelectedProduct;
+
+            merk.MerkId = SelectedMerk.MerkId;
+            merk.Merknaam = SelectedMerk.Merknaam;
+            merk.Product = productRepository.Find(p.ProductId);
+
+            Merk updateMerk = merk.ConvertToMerk(merk);
             merkRepository.Update(updateMerk);
+
+            var item = Merken.FirstOrDefault(i => i.MerkId == merk.MerkId);
+            if (item != null)
+            {
+                item.MerkId = merk.MerkId;
+                item.Merknaam = merk.Merknaam;
+                item.Product = merk.Product;
+            }
         }
 
         private bool CanEditMerk()
@@ -104,20 +129,20 @@ namespace PROG6_Assessment.ViewModel
         // ---------------- Delete Merk ---------------- //
         private void DeleteMerk()
         {
-            var productList = productRepository.GetAll();
-            var foreignKeyFix = new Product();
+            //var productList = productRepository.GetAll();
+            //var foreignKeyFix = new Product();
 
-            foreach (var item in productList)
-            {
-                if (item.Merk.MerkId == SelectedMerk.MerkId)
-                {
-                    foreignKeyFix.ProductId = item.ProductId;
-                    foreignKeyFix.ProductNaam = item.ProductNaam;
-                    foreignKeyFix.Afdeling = item.Afdeling;
-                    foreignKeyFix.Merk = null;
-                    productRepository.Update(foreignKeyFix);
-                }
-            }
+            //foreach (var item in productList)
+            //{
+            //    if (item.Merk.MerkId == SelectedMerk.MerkId)
+            //    {
+            //        foreignKeyFix.ProductId = item.ProductId;
+            //        foreignKeyFix.ProductNaam = item.ProductNaam;
+            //        foreignKeyFix.Afdeling = item.Afdeling;
+            //        foreignKeyFix.Merk = null;
+            //        productRepository.Update(foreignKeyFix);
+            //    }
+            //}
             var deleteMerk = SelectedMerk.ConvertToMerk(SelectedMerk);
 
             merkRepository.Delete(deleteMerk);
@@ -144,16 +169,21 @@ namespace PROG6_Assessment.ViewModel
 
         public void GekozenMerkShow(int id)
         {
+            MerkGekozenProduct.Clear();
             foreach (var item in Merken)
             {
-                if (item.MerkId == id)
+                if (item.Product != null)
                 {
-                    MerkViewModel m = new MerkViewModel();
+                    if (item.Product.ProductId == id)
+                    {
+                        MerkViewModel m = new MerkViewModel();
 
-                    m.MerkId = item.MerkId;
-                    m.Merknaam = item.Merknaam;
- 
-                    MerkGekozenProduct.Add(m);
+                        m.MerkId = item.MerkId;
+                        m.Merknaam = item.Merknaam;
+                        m.Product = item.Product;
+
+                        MerkGekozenProduct.Add(m);
+                    }
                 }
             }
         }

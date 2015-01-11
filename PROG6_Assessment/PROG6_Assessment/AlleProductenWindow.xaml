@@ -10,10 +10,9 @@
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding ProductList.SelectedProduct}" ItemsSource="{Binding ProductList.Products}" Margin="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding ProductId}" />
-                <DataGridTextColumn Header="Product" Binding="{Binding ProductNaam}" Width="150" />
-                <DataGridTextColumn Header="Prijs" Binding="{Binding Prijs}" Width="60" />
-                <DataGridTextColumn Header="Afdeling" Binding="{Binding Afdeling.AfdelingNaam}" Width="150" />
-                <DataGridTextColumn Header="Merk" Binding="{Binding Merk.MerkNaam}" Width="*" />
+                <DataGridTextColumn Header="Product" Binding="{Binding ProductNaam}" Width="170" />
+                <DataGridTextColumn Header="Prijs" Binding="{Binding Prijs}" Width="100" />
+                <DataGridTextColumn Header="Afdeling" Binding="{Binding Afdeling.AfdelingNaam}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>

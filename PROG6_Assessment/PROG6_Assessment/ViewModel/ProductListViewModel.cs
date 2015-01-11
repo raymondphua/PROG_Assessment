@@ -64,13 +64,11 @@ namespace PROG6_Assessment.ViewModel
         {
             var product = new ProductViewModel();
 
-            // merk + afdeling ophalen.
-            MerkViewModel merk = (MerkViewModel)SelectedProduct.SelectedMerk;
+            // afdeling ophalen.
             AfdelingViewModel afdeling = (AfdelingViewModel)SelectedProduct.SelectedAfdeling;
 
             product.ProductNaam = SelectedProduct.ProductNaam;
             product.Prijs = SelectedProduct.Prijs;
-            product.Merk = merkRepository.Find(merk.MerkId);
             product.Afdeling = afdelingRepository.Find(afdeling.AfdelingId);
 
             var addProduct = product.ConvertToProduct(product);
@@ -94,10 +92,6 @@ namespace PROG6_Assessment.ViewModel
             {
                 return false;
             }
-            if (SelectedProduct.SelectedMerk == null)
-            {
-                return false;
-            }
 
             return true;
         }
@@ -107,18 +101,26 @@ namespace PROG6_Assessment.ViewModel
         {
             var product = new ProductViewModel();
 
-            // merk + afdeling ophalen.
-            MerkViewModel merk = (MerkViewModel)SelectedProduct.SelectedMerk;
+            // afdeling ophalen.
             AfdelingViewModel afdeling = (AfdelingViewModel)SelectedProduct.SelectedAfdeling;
 
             product.ProductId = SelectedProduct.ProductId;
             product.ProductNaam = SelectedProduct.ProductNaam;
             product.Prijs = SelectedProduct.Prijs;
-            product.Merk = merkRepository.Find(merk.MerkId);
             product.Afdeling = afdelingRepository.Find(afdeling.AfdelingId);
 
             Product updateProduct = product.ConvertToProduct(product);
             productRepository.Update(updateProduct);
+
+            var item = Products.FirstOrDefault(i => i.ProductId == product.ProductId);
+            if (item != null)
+            {
+                item.ProductId = product.ProductId;
+                item.ProductNaam = product.ProductNaam;
+                item.Prijs = product.Prijs;
+                item.Afdeling = product.Afdeling;
+                item.Merken = product.Merken;
+            }
         }
 
         private bool CanEditProduct()
@@ -139,23 +141,43 @@ namespace PROG6_Assessment.ViewModel
         private void DeleteProduct()
         {
             var kortingList = kortingRepository.GetAll();
+            var merkList = merkRepository.GetAll();
 
             var foreignKeyFix = new Korting();
 
             foreach(var item in kortingList)
             {
-                if (item.Product.ProductId == SelectedProduct.ProductId)
+                if (item.Product != null)
                 {
-                    foreignKeyFix.KortingId = item.KortingId;
-                    foreignKeyFix.Coupon = item.Coupon;
-                    foreignKeyFix.StartDatum = item.StartDatum;
-                    foreignKeyFix.EindDatum = item.EindDatum;
-                    foreignKeyFix.Product = null;
+                    if (item.Product.ProductId == SelectedProduct.ProductId)
+                    {
+                        foreignKeyFix.KortingId = item.KortingId;
+                        foreignKeyFix.Coupon = item.Coupon;
+                        foreignKeyFix.StartDatum = item.StartDatum;
+                        foreignKeyFix.EindDatum = item.EindDatum;
+                        foreignKeyFix.Product = null;
 
-                    kortingRepository.Update(foreignKeyFix);
+                        kortingRepository.Update(foreignKeyFix);
+                    }
                 }
             }
 
+            foreach(var item in merkList)
+            {
+                if (item.Product != null)
+                {
+                    if (item.Product.ProductId == SelectedProduct.ProductId)
+                    {
+                        var foreignKeyFix2 = new Merk();
+
+                        foreignKeyFix2.MerkId = item.MerkId;
+                        foreignKeyFix2.MerkNaam = item.MerkNaam;
+                        foreignKeyFix2.Product = null;
+
+                        merkRepository.Update(foreignKeyFix2);
+                    }
+                }
+            }
             var deleteProduct = SelectedProduct.ConvertToProduct(SelectedProduct);
 
             productRepository.Delete(deleteProduct);
@@ -183,6 +205,8 @@ namespace PROG6_Assessment.ViewModel
         // lijst van gekozen afdeling id 
         public void GekozenAfdelingShow(int id)
         {
+            ProductenGekozenAfdeling.Clear();
+
             foreach (var item in Products)
             {
                 if (item.Afdeling != null)
@@ -192,8 +216,10 @@ namespace PROG6_Assessment.ViewModel
                         ProductViewModel p = new ProductViewModel();
 
                         p.ProductId = item.ProductId;
+                        p.Prijs = item.Prijs;
                         p.ProductNaam = item.ProductNaam;
-                        p.Merk = item.Merk;
+                        p.Afdeling = item.Afdeling;
+                        
                         ProductenGekozenAfdeling.Add(p);
                     }
                 }

@@ -96,10 +96,29 @@ namespace PROG6_Assessment.ViewModel
             korting.Coupon = SelectedKorting.Coupon;
             korting.StartDatum = SelectedKorting.StartDatum;
             korting.EindDatum = SelectedKorting.EindDatum;
-            korting.Product = productRepository.Find(product.ProductId);
+
+            if (product == null)
+            {
+                korting.Product = SelectedKorting.Product;
+            }
+            else
+            {
+                korting.Product = productRepository.Find(product.ProductId);
+            }
 
             var editKorting = korting.ConvertToKorting(korting);
             kortingRepository.Update(editKorting);
+
+            var item = Kortingen.FirstOrDefault(i => i.KortingId == korting.KortingId);
+
+            if (item != null)
+            {
+                item.KortingId = korting.KortingId;
+                item.Coupon = korting.Coupon;
+                item.StartDatum = korting.StartDatum;
+                item.EindDatum = korting.EindDatum;
+                item.Product = korting.Product;
+            }
         }
 
         private bool CanEditKorting()

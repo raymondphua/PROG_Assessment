@@ -26,7 +26,7 @@ namespace PROG6_Assessment.Model
             using (var context = new AppieContext())
             {
                 merken = context.Merken
-                    .Include(x => x.Producten)
+                    .Include(x => x.Product)
                     .ToList();
             }
 
@@ -49,11 +49,10 @@ namespace PROG6_Assessment.Model
             {
                 if (entity != null)
                 {
-                    foreach (var item in entity.Producten)
+                    if (entity.Product != null)
                     {
-                        context.Entry(entity).State = EntityState.Unchanged;
+                        context.Entry(entity.Product).State = EntityState.Unchanged;
                     }
-                    
                     context.Merken.Add(entity);
                     context.SaveChanges();
                 }
@@ -66,10 +65,14 @@ namespace PROG6_Assessment.Model
             {
                 if (entity != null)
                 {
+                    if (entity.Product != null)
+                    {
+                        context.Entry(entity.Product).State = EntityState.Unchanged;
+                    }
                     var editEntity = context.Merken.SingleOrDefault(x => x.MerkId == entity.MerkId);
 
-                    editEntity.MerkId = entity.MerkId;
                     editEntity.MerkNaam = entity.MerkNaam;
+                    editEntity.Product = entity.Product;
 
                     context.SaveChanges();
                 }

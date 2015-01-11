@@ -12,7 +12,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding KortingId}" Width="20" />
                 <DataGridTextColumn Header="Coupon" Binding="{Binding Coupon}" Width="100" />
                 <DataGridTextColumn Header="Start" Binding="{Binding StartDatum}" Width="125" />
-                <DataGridTextColumn Header="Eind" Binding="{Binding StartDatum}" Width="125" />
+                <DataGridTextColumn Header="Eind" Binding="{Binding EindDatum}" Width="125" />
                 <DataGridTextColumn Header="Product" Binding="{Binding Product.ProductNaam}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
@@ -37,7 +37,7 @@
             <TextBlock Text="Eind Datum: " Grid.Column="1" Margin="134.2,35,-34.4,-35.2" />
             <DatePicker SelectedDate="{Binding KortingList.SelectedKorting.EindDatum}" Grid.Column="1" Margin="240.2,35,-139.4,-35.2" />
 
-            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="24" ItemsSource="{Binding ProductList.Products}" Text="{Binding Path=KortingList.SelectedKorting.Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding KortingList.SelectedKorting.SelectedProduct}" DisplayMemberPath="ProductNaam" Grid.ColumnSpan="2" Margin="0,78,0,-77.2" />
+            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="24" ItemsSource="{Binding ProductList.Products}" SelectedItem="{Binding KortingList.SelectedKorting.SelectedProduct}" DisplayMemberPath="ProductNaam" Grid.ColumnSpan="2" Margin="0,78,0,-77.2" />
         </Grid>
 
         <Button Content="Add" Command="{Binding KortingList.AddKortingCommand}" Width="100" Margin="8,95,410.4,0"/>

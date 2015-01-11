@@ -9,15 +9,10 @@ namespace DomainModel.Model
 {
     public class Merk
     {
-        public Merk()
-        {
-            Producten = new List<Product>();
-        }
-
         [Key]
         public int MerkId { get; set; }
         [Required]
         public string MerkNaam { get; set; }
-        public virtual ICollection<Product> Producten { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

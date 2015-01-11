@@ -99,6 +99,9 @@
     <Compile Include="AlleAfdelingenWindow.xaml.cs">
       <DependentUpon>AlleAfdelingenWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AlleKortingenWindow.xaml.cs">
+      <DependentUpon>AlleKortingenWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AlleMerkenWindow.xaml.cs">
       <DependentUpon>AlleMerkenWindow.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
     <Compile Include="Migrations\201501110051448_KortingToevoegen.cs" />
     <Compile Include="Migrations\201501110051448_KortingToevoegen.Designer.cs">
       <DependentUpon>201501110051448_KortingToevoegen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501111127349_databaseUpdate.cs" />
+    <Compile Include="Migrations\201501111127349_databaseUpdate.Designer.cs">
+      <DependentUpon>201501111127349_databaseUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AfdelingRepository.cs" />
@@ -164,6 +171,10 @@
     <Compile Include="ViewModel\TestWindowManagerViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="AlleAfdelingenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AlleKortingenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501110051448_KortingToevoegen.resx">
       <DependentUpon>201501110051448_KortingToevoegen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501111127349_databaseUpdate.resx">
+      <DependentUpon>201501111127349_databaseUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

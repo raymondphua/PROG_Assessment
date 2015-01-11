@@ -114,7 +114,7 @@ namespace PROG6_Assessment.ViewModel
                     foreignKeyFix.ProductId = item.ProductId;
                     foreignKeyFix.ProductNaam = item.ProductNaam;
                     foreignKeyFix.Afdeling = null;
-                    foreignKeyFix.Merk = item.Merk;
+                    foreignKeyFix.Merken = item.Merken;
                     productRepository.Update(foreignKeyFix);
                 }
             }
@@ -141,16 +141,5 @@ namespace PROG6_Assessment.ViewModel
         {
             return true;
         }
-
-        // ---------------- Product Overzicht ---------------- //
-        //private void ShowProductOverzicht()
-        //{
-        //    plvm.GekozenAfdelingShow(SelectedAfdeling.AfdelingId);
-        //    _productOverzicht.Show();
-        //}
-        //private bool canShowProductOverzicht()
-        //{
-        //    return _productOverzicht.IsVisible == false;
-        //}
     }
 }

@@ -9,6 +9,11 @@ namespace DomainModel.Model
 {
     public class Product
     {
+        public Product()
+        {
+            Merken = new List<Merk>();
+        }
+
         [Key]
         public int ProductId { get; set; }
         [Required]
@@ -16,7 +21,7 @@ namespace DomainModel.Model
         [Required]
         public int Prijs { get; set; }
         public virtual Afdeling Afdeling { get; set; }
-        public virtual Merk Merk { get; set; }
+        public virtual ICollection<Merk> Merken { get; set; }
         public virtual ICollection<Korting> Kortingen { get; set; }
     }
 }

@@ -35,10 +35,10 @@ namespace PROG6_Assessment.ViewModel
             set { _product.Afdeling = value; OnPropertyChanged(); }
         }
 
-        public Merk Merk
+        public List<Merk> Merken
         {
-            get { return _product.Merk; }
-            set { _product.Merk = value; OnPropertyChanged(); }
+            get { return _product.Merken.ToList(); }
+            set { _product.Merken = value; OnPropertyChanged(); }
         }
 
         public Product ConvertToProduct(ProductViewModel convert)
@@ -49,11 +49,11 @@ namespace PROG6_Assessment.ViewModel
             product.ProductNaam = convert.ProductNaam;
             product.Prijs = convert.Prijs;
             product.Afdeling = convert.Afdeling;
-            product.Merk = convert.Merk;
+            product.Merken = convert.Merken;
             return product;
         }
 
-        public object SelectedMerk { get; set; }
+        //public object SelectedMerk { get; set; }
 
         public object SelectedAfdeling { get; set; }
 

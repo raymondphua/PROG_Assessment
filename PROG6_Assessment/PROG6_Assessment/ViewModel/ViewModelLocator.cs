@@ -32,38 +32,38 @@ namespace PROG6_Assessment.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
                 
             //SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<AfdelingListViewModel>();
-            SimpleIoc.Default.Register<ProductListViewModel>();
-            SimpleIoc.Default.Register<MerkListViewModel>();
+            //SimpleIoc.Default.Register<AfdelingListViewModel>();
+            //SimpleIoc.Default.Register<ProductListViewModel>();
+            //SimpleIoc.Default.Register<MerkListViewModel>();
             SimpleIoc.Default.Register<AllListViewModel>();
 
             //test
             SimpleIoc.Default.Register<TestWindowManagerViewModel>();
         }
         
-        public AfdelingListViewModel Afdeling
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<AfdelingListViewModel>();
-            }
-        }
+        //public AfdelingListViewModel Afdeling
+        //{
+        //    get
+        //    {
+        //        return ServiceLocator.Current.GetInstance<AfdelingListViewModel>();
+        //    }
+        //}
 
-        public ProductListViewModel Product
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<ProductListViewModel>();
-            }
-        }
+        //public ProductListViewModel Product
+        //{
+        //    get
+        //    {
+        //        return ServiceLocator.Current.GetInstance<ProductListViewModel>();
+        //    }
+        //}
 
-        public MerkListViewModel Merk
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MerkListViewModel>();
-            }
-        }
+        //public MerkListViewModel Merk
+        //{
+        //    get
+        //    {
+        //        return ServiceLocator.Current.GetInstance<MerkListViewModel>();
+        //    }
+        //}
         
         // test
 
