@@ -24,7 +24,7 @@ namespace PROG6_Assessment.ViewModel
             set { _product.ProductNaam = value; OnPropertyChanged(); }
         }
         
-        public int Prijs
+        public double Prijs
         {
             get { return _product.Prijs; }
             set { _product.Prijs = value; OnPropertyChanged(); }
@@ -41,6 +41,12 @@ namespace PROG6_Assessment.ViewModel
             set { _product.Merken = value; OnPropertyChanged(); }
         }
 
+        public List<Korting> Kortingen
+        {
+            get { return _product.Kortingen.ToList(); }
+            set { _product.Kortingen = value; OnPropertyChanged(); }
+        }
+
         public Product ConvertToProduct(ProductViewModel convert)
         {
             Product product = new Product();
@@ -50,6 +56,7 @@ namespace PROG6_Assessment.ViewModel
             product.Prijs = convert.Prijs;
             product.Afdeling = convert.Afdeling;
             product.Merken = convert.Merken;
+            product.Kortingen = convert.Kortingen;
             return product;
         }
 

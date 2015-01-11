@@ -98,7 +98,15 @@ namespace PROG6_Assessment.ViewModel
 
             merk.MerkId = SelectedMerk.MerkId;
             merk.Merknaam = SelectedMerk.Merknaam;
-            merk.Product = productRepository.Find(p.ProductId);
+
+            if (p == null)
+            {
+                merk.Product = SelectedMerk.Product;
+            }
+            else
+            {
+                merk.Product = productRepository.Find(p.ProductId);
+            }
 
             Merk updateMerk = merk.ConvertToMerk(merk);
             merkRepository.Update(updateMerk);

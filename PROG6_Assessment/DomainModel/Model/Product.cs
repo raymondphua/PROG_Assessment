@@ -12,6 +12,7 @@ namespace DomainModel.Model
         public Product()
         {
             Merken = new List<Merk>();
+            Kortingen = new List<Korting>();
         }
 
         [Key]
@@ -19,7 +20,7 @@ namespace DomainModel.Model
         [Required]
         public string ProductNaam { get; set; }
         [Required]
-        public int Prijs { get; set; }
+        public double Prijs { get; set; }
         public virtual Afdeling Afdeling { get; set; }
         public virtual ICollection<Merk> Merken { get; set; }
         public virtual ICollection<Korting> Kortingen { get; set; }

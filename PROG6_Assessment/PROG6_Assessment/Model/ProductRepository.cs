@@ -28,6 +28,7 @@ namespace PROG6_Assessment.Model
                 return context.Producten
                     .Include(x => x.Afdeling)
                     .Include(x => x.Merken)
+                    .Include(x => x.Kortingen)
                     .ToList();
             }
         }

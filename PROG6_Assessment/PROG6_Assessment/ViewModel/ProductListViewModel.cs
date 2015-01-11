@@ -107,8 +107,16 @@ namespace PROG6_Assessment.ViewModel
             product.ProductId = SelectedProduct.ProductId;
             product.ProductNaam = SelectedProduct.ProductNaam;
             product.Prijs = SelectedProduct.Prijs;
-            product.Afdeling = afdelingRepository.Find(afdeling.AfdelingId);
 
+            if (afdeling == null)
+            {
+                product.Afdeling = SelectedProduct.Afdeling;
+            }
+            else
+            {
+                product.Afdeling = afdelingRepository.Find(afdeling.AfdelingId);
+            }
+            product.Kortingen = SelectedProduct.Kortingen;
             Product updateProduct = product.ConvertToProduct(product);
             productRepository.Update(updateProduct);
 

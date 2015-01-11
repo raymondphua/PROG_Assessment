@@ -136,6 +136,10 @@
     <Compile Include="Migrations\201501111127349_databaseUpdate.Designer.cs">
       <DependentUpon>201501111127349_databaseUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501111833018_prijsDouble.cs" />
+    <Compile Include="Migrations\201501111833018_prijsDouble.Designer.cs">
+      <DependentUpon>201501111833018_prijsDouble.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AfdelingRepository.cs" />
     <Compile Include="Model\DummyMerkRepository.cs" />
@@ -261,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501111127349_databaseUpdate.resx">
       <DependentUpon>201501111127349_databaseUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501111833018_prijsDouble.resx">
+      <DependentUpon>201501111833018_prijsDouble.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
