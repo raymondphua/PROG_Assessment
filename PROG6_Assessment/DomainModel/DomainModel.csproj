@@ -45,12 +45,14 @@
     <Compile Include="Model\Korting.cs" />
     <Compile Include="Model\Merk.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\Recept.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IAfdelingRepository.cs" />
     <Compile Include="Repository\IBoodschappenlijstjeRepository.cs" />
     <Compile Include="Repository\IKortingRepository.cs" />
     <Compile Include="Repository\IMerkRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
+    <Compile Include="Repository\IReceptRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

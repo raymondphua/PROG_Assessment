@@ -17,5 +17,6 @@ namespace PROG6_Assessment.DataBaseContext
         public DbSet<Merk> Merken { get; set; }
         public DbSet<Korting> Kortingen { get; set; }
         public DbSet<Boodschappenlijstje> Boodschappenlijstjes { get; set; }
+        public DbSet<Recept> Recepten { get; set; }
     }
 }

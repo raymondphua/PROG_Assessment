@@ -151,11 +151,24 @@
     <Compile Include="Model\KortingRepository.cs" />
     <Compile Include="Model\MerkRepository.cs" />
     <Compile Include="Model\ProductRepository.cs" />
+    <Compile Include="Model\ReceptRepository.cs" />
     <Compile Include="OverzichtControl.xaml.cs">
       <DependentUpon>OverzichtControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProductOverzicht.xaml.cs">
       <DependentUpon>ProductOverzicht.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReceptCrudWindow.xaml.cs">
+      <DependentUpon>ReceptCrudWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReceptenProductenWindow.xaml.cs">
+      <DependentUpon>ReceptenProductenWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReceptenWindow.xaml.cs">
+      <DependentUpon>ReceptenWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReceptProductLijst.xaml.cs">
+      <DependentUpon>ReceptProductLijst.xaml</DependentUpon>
     </Compile>
     <Compile Include="TestAfdelingOverzicht.xaml.cs">
       <DependentUpon>TestAfdelingOverzicht.xaml</DependentUpon>
@@ -178,6 +191,8 @@
     <Compile Include="ViewModel\MerkViewModel.cs" />
     <Compile Include="ViewModel\ProductListViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
+    <Compile Include="ViewModel\ReceptListViewModel.cs" />
+    <Compile Include="ViewModel\ReceptViewModel.cs" />
     <Compile Include="ViewModel\TestWindowManagerViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="AlleAfdelingenWindow.xaml">
@@ -237,6 +252,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProductOverzicht.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReceptCrudWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReceptenProductenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReceptenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReceptProductLijst.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

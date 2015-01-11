@@ -12,7 +12,7 @@
         <Button Content="Overzicht" Command="{Binding ShowOverzichtControlCommand }" HorizontalAlignment="Center" Height="23" Margin="0,40,0,0" Width="159"/>
         <Button Content="Beheer" Command="{Binding BeheerschermCommand }" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" Width="159"/>
         <Button Content="Boodschappenlijst" Command="{Binding ShowLijstCommand }" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" Width="159"/>
-        <Button Content="Recepten" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" Width="159"/>
+        <Button Content="Recepten" Command="{Binding ShowReceptenCommand}" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" Width="159"/>
 
     </StackPanel>
 </Window>
