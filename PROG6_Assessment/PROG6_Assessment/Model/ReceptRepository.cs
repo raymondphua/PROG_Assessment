@@ -52,7 +52,7 @@ namespace PROG6_Assessment.Model
                 {
                     foreach (var item in entity.Producten)
                     {
-                        context.Entry(entity).State = EntityState.Unchanged;
+                        context.Entry(item).State = EntityState.Unchanged;
                     }
 
                     context.Recepten.Add(entity);

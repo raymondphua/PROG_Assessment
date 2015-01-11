@@ -81,15 +81,6 @@ namespace PROG6_Assessment.ViewModel
 
         private bool CanAddRecept()
         {
-            if (SelectedRecept == null)
-            {
-                return false;
-            }
-            if (String.IsNullOrEmpty(SelectedRecept.ReceptNaam))
-            {
-                return false;
-            }
-
             return true;
         }
 

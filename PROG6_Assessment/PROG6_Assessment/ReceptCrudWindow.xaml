@@ -29,13 +29,13 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Recept naam:" Foreground="White" Grid.Column="0" Grid.Row="0" />
-            <TextBox MaxLength="50" Grid.Column="1" Grid.Row="0"  Text="{Binding Path=ProductList.SelectedProduct.ProductNaam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox MaxLength="50" Grid.Column="1" Grid.Row="0"  Text="{Binding Path=ReceptList.SelectedRecept.ReceptNaam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         </Grid>
-        <Button Content="Add" Command="{Binding ReceptList.AddProductCommand}" Width="100" Margin="10,20,410.4,0"/>
-        <Button Content="Update" Command="{Binding ReceptList.EditProductCommand}" Width="100" Margin="120,-20,306.4,0"/>
-        <Button Content="Delete" Command="{Binding ReceptList.DeleteProductCommand}" Width="100" Margin="225,-20,0,0" HorizontalAlignment="Left"/>
-        <Button Content="Clear" Command="{Binding ReceptList.ClearProductCommand}" Width="100" Margin="340,-20,96,0"/>
+        <Button Content="Add" Command="{Binding ReceptList.AddReceptCommand}" Width="100" Margin="10,20,410.4,0"/>
+        <Button Content="Update" Command="{Binding ReceptList.EditReceptCommand}" Width="100" Margin="120,-20,306.4,0"/>
+        <Button Content="Delete" Command="{Binding ReceptList.DeleteReceptCommand}" Width="100" Margin="225,-20,0,0" HorizontalAlignment="Left"/>
+        <Button Content="Clear" Command="{Binding ReceptList.ClearReceptCommand}" Width="100" Margin="340,-20,96,0"/>
 
     </StackPanel>
 </Window>
