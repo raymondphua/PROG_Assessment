@@ -22,6 +22,7 @@ namespace PROG6_Assessment.ViewModel
         public MerkListViewModel MerkList { get; set; }
         public ProductListViewModel ProductList { get; set; }
         public AfdelingListViewModel AfdelingList { get; set; }
+        public KortingListViewModel KortingList { get; set; }
 
         public AfdelingViewModel SelectedAfdeling 
         { 
@@ -47,6 +48,7 @@ namespace PROG6_Assessment.ViewModel
             AfdelingList = new AfdelingListViewModel();
             MerkList = new MerkListViewModel();
             ProductList = new ProductListViewModel();
+            KortingList = new KortingListViewModel();
 
             ShowProductenCommand = new RelayCommand(ShowProductOverzicht, canShowProductOverzicht);
             ShowMerkenCommand = new RelayCommand(ShowMerkenOverzicht, canShowMerkOverzicht);

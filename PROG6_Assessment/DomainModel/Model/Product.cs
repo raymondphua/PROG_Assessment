@@ -17,5 +17,6 @@ namespace DomainModel.Model
         public int Prijs { get; set; }
         public virtual Afdeling Afdeling { get; set; }
         public virtual Merk Merk { get; set; }
+        public virtual ICollection<Korting> Kortingen { get; set; }
     }
 }

@@ -20,7 +20,6 @@ namespace PROG6_Assessment.ViewModel
         private AfdelingViewModel _selectedAfdeling;
         private IAfdelingRepository afdelingRepository;
         private IProductRepository productRepository;
-        private ProductListViewModel plvm;
 
         public AfdelingViewModel SelectedAfdeling
         {
@@ -39,7 +38,6 @@ namespace PROG6_Assessment.ViewModel
         {
             afdelingRepository = new AfdelingRepository();
             productRepository = new ProductRepository();
-            plvm = new ProductListViewModel();
             
             var afdelingList = afdelingRepository.GetAll().Select(s => new AfdelingViewModel(s));
 

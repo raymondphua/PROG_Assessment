@@ -22,7 +22,8 @@ namespace PROG6_Assessment.ViewModel
         private IProductRepository productRepository;
         private IMerkRepository merkRepository;
         private IAfdelingRepository afdelingRepository;
-        
+        private IKortingRepository kortingRepository;
+
         public ProductViewModel SelectedProduct 
         {
             get { return _selectedProduct; }
@@ -42,6 +43,7 @@ namespace PROG6_Assessment.ViewModel
             productRepository = new ProductRepository();
             merkRepository = new MerkRepository();
             afdelingRepository = new AfdelingRepository();
+            kortingRepository = new KortingRepository();
 
             var productList = productRepository.GetAll().Select(s => new ProductViewModel(s));
 
@@ -136,6 +138,24 @@ namespace PROG6_Assessment.ViewModel
         // ---------------- Delete Product ---------------- //
         private void DeleteProduct()
         {
+            var kortingList = kortingRepository.GetAll();
+
+            var foreignKeyFix = new Korting();
+
+            foreach(var item in kortingList)
+            {
+                if (item.Product.ProductId == SelectedProduct.ProductId)
+                {
+                    foreignKeyFix.KortingId = item.KortingId;
+                    foreignKeyFix.Coupon = item.Coupon;
+                    foreignKeyFix.StartDatum = item.StartDatum;
+                    foreignKeyFix.EindDatum = item.EindDatum;
+                    foreignKeyFix.Product = null;
+
+                    kortingRepository.Update(foreignKeyFix);
+                }
+            }
+
             var deleteProduct = SelectedProduct.ConvertToProduct(SelectedProduct);
 
             productRepository.Delete(deleteProduct);

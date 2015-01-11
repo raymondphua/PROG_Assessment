@@ -1,0 +1,48 @@
+﻿<Window x:Class="PROG6_Assessment.KortingBeheer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="KortingBeheer" Height="360" Width="525"
+        Closing="Window_Closing"
+        DataContext="{Binding All, Source={StaticResource Locator}}">
+    
+    <StackPanel>
+        <TextBlock Text="Korting lijst" FontSize="28" />
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding KortingList.SelectedKorting}" ItemsSource="{Binding KortingList.Kortingen}" Margin="5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding KortingId}" Width="20" />
+                <DataGridTextColumn Header="Coupon" Binding="{Binding Coupon}" Width="100" />
+                <DataGridTextColumn Header="Start" Binding="{Binding StartDatum}" Width="125" />
+                <DataGridTextColumn Header="Eind" Binding="{Binding StartDatum}" Width="125" />
+                <DataGridTextColumn Header="Product" Binding="{Binding Product.ProductNaam}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Text="Create/Update/Delete Korting" Margin="5"  FontSize="28" />
+
+        <Grid Margin="5,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Korting coupon:" Grid.Column="0" Grid.Row="0" />
+            <TextBox MaxLength="50" Grid.Column="1" Grid.Row="0"  Text="{Binding Path=KortingList.SelectedKorting.Coupon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0.2,0,67.6,-0.2" />
+            
+            <TextBlock Text="Start Datum:" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,35,200.6,-35.2" />
+            <DatePicker HorizontalAlignment="Left" SelectedDate="{Binding KortingList.SelectedKorting.StartDatum}" Margin="0.2,35,0,-35.2" Grid.Column="1"  />
+        
+            <TextBlock Text="Eind Datum: " Grid.Column="1" Margin="134.2,35,-34.4,-35.2" />
+            <DatePicker SelectedDate="{Binding KortingList.SelectedKorting.EindDatum}" Grid.Column="1" Margin="240.2,35,-139.4,-35.2" />
+
+            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="24" ItemsSource="{Binding ProductList.Products}" Text="{Binding Path=KortingList.SelectedKorting.Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding KortingList.SelectedKorting.SelectedProduct}" DisplayMemberPath="ProductNaam" Grid.ColumnSpan="2" Margin="0,78,0,-77.2" />
+        </Grid>
+
+        <Button Content="Add" Command="{Binding KortingList.AddKortingCommand}" Width="100" Margin="8,95,410.4,0"/>
+        <Button Content="Update" Command="{Binding KortingList.EditKortingCommand}" Width="100" Margin="112,-20,306.4,0"/>
+        <Button Content="Delete" Command="{Binding KortingList.DeleteKortingCommand}" Width="100" Margin="216,-20,201,0"/>
+        <Button Content="Clear" Command="{Binding KortingList.ClearKortingCommand}" Width="100" Margin="321,-20,96,0"/>
+    </StackPanel>
+</Window>
