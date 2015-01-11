@@ -9,5 +9,8 @@ namespace DomainModel.Repository
 {
     public interface IProductRepository : IRepository<Product>
     {
+
+        IEnumerable<Product> GetAllProducts();
+
     }
 }

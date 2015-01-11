@@ -21,6 +21,13 @@ namespace PROG6_Assessment.Model
             dbContext = new AppieContext();
         }
 
+        public IEnumerable<Product> GetAllProducts()
+        {
+
+            return GetAll();
+
+        }
+
         public List<Product> GetAll()
         {
             using (var context = new AppieContext())

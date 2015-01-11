@@ -9,5 +9,9 @@ namespace DomainModel.Repository
 {
     public interface IMerkRepository : IRepository<Merk>
     {
+
+        IEnumerable<Merk> GetAllMerken();
+
+
     }
 }
