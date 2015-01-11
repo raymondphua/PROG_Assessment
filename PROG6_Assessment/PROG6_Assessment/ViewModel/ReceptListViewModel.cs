@@ -198,24 +198,10 @@ namespace PROG6_Assessment.ViewModel
             return true;
         }
 
-        public void GekozenRecept(int id, List<ProductViewModel> products)
+        public void GekozenRecept(int id)
         {
             ProductenGekozenRecept.Clear();
 
-            foreach (ProductViewModel pvm in products)
-            {
-
-                foreach (ReceptViewModel rvm in Recepten)
-                {
-
-                    if (rvm.ReceptId == id)
-                    {
-
-                        ProductenGekozenRecept.Add(pvm);
-
-                    }
-                }
-            }
         }
 
     }

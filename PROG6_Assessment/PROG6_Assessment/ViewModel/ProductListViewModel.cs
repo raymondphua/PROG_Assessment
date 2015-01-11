@@ -18,12 +18,15 @@ namespace PROG6_Assessment.ViewModel
         public ObservableCollection<ProductViewModel> Products { get; set; }
         public ObservableCollection<ProductViewModel> ProductenGekozenAfdeling { get; set; }
         public ObservableCollection<ProductViewModel> AddProducten { get; set; }
+        public ObservableCollection<ProductViewModel> ProductenGekozenRecept { get; set; }
 
         private ProductViewModel _selectedProduct;
         private IProductRepository productRepository;
         private IMerkRepository merkRepository;
         private IAfdelingRepository afdelingRepository;
         private IKortingRepository kortingRepository;
+        private IReceptRepository receptRepository;
+
         private double totaalPrijs;
 
         public double TotaalPrijs
@@ -52,6 +55,7 @@ namespace PROG6_Assessment.ViewModel
             merkRepository = new MerkRepository();
             afdelingRepository = new AfdelingRepository();
             kortingRepository = new KortingRepository();
+            receptRepository = new ReceptRepository();
 
             var productList = productRepository.GetAll().Select(s => new ProductViewModel(s));
 
@@ -64,6 +68,7 @@ namespace PROG6_Assessment.ViewModel
             Products = new ObservableCollection<ProductViewModel>(productList);
             ProductenGekozenAfdeling = new ObservableCollection<ProductViewModel>();
             AddProducten = new ObservableCollection<ProductViewModel>();
+            ProductenGekozenRecept = new ObservableCollection<ProductViewModel>();
 
             ////Lijstjes = new ObservableCollection<ProductViewModel>();
             //var item = productRepository.Find(1);
@@ -92,6 +97,7 @@ namespace PROG6_Assessment.ViewModel
                 newProduct.Prijs = SelectedProduct.Prijs;
                 newProduct.Merken = SelectedProduct.Merken;
                 newProduct.Kortingen = SelectedProduct.Kortingen;
+                newProduct.Recept = SelectedProduct.Recept;
                 newProduct.Aantal = 1;
                 AddProducten.Add(newProduct);
             }
@@ -99,6 +105,32 @@ namespace PROG6_Assessment.ViewModel
             BerekenPrijs();
         }
 
+        public void AddReceptList(List<ProductViewModel> producten)
+        {
+            foreach (var item in producten)
+            {
+                var product = AddProducten.FirstOrDefault(x => x.ProductId == item.ProductId);
+
+                if (product != null)
+                {
+                    product.Aantal++;
+                }
+                else
+                {
+                    var newProduct = new ProductViewModel();
+                    newProduct.ProductId = item.ProductId;
+                    newProduct.ProductNaam = item.ProductNaam;
+                    newProduct.Prijs = item.Prijs;
+                    newProduct.Merken = item.Merken;
+                    newProduct.Kortingen = item.Kortingen;
+                    newProduct.Recept = item.Recept;
+                    newProduct.Aantal = 1;
+                    AddProducten.Add(newProduct);
+                }
+            }
+
+            BerekenPrijs();
+        }
         private void BerekenPrijs()
         {
             // BEGIN MET REKENEN BITCH
@@ -149,10 +181,12 @@ namespace PROG6_Assessment.ViewModel
 
             // afdeling ophalen.
             AfdelingViewModel afdeling = (AfdelingViewModel)SelectedProduct.SelectedAfdeling;
+            ReceptViewModel recept = (ReceptViewModel)SelectedProduct.SelectedRecept;
 
             product.ProductNaam = SelectedProduct.ProductNaam;
             product.Prijs = SelectedProduct.Prijs;
             product.Afdeling = afdelingRepository.Find(afdeling.AfdelingId);
+            product.Recept = receptRepository.Find(recept.ReceptId);
 
             var addProduct = product.ConvertToProduct(product);
             productRepository.Create(addProduct);
@@ -186,6 +220,7 @@ namespace PROG6_Assessment.ViewModel
 
             // afdeling ophalen.
             AfdelingViewModel afdeling = (AfdelingViewModel)SelectedProduct.SelectedAfdeling;
+            ReceptViewModel recept = (ReceptViewModel)SelectedProduct.SelectedRecept;
 
             product.ProductId = SelectedProduct.ProductId;
             product.ProductNaam = SelectedProduct.ProductNaam;
@@ -199,6 +234,16 @@ namespace PROG6_Assessment.ViewModel
             {
                 product.Afdeling = afdelingRepository.Find(afdeling.AfdelingId);
             }
+
+            if (recept == null)
+            {
+                product.Recept = SelectedProduct.Recept;
+            }
+            else
+            {
+                product.Recept = receptRepository.Find(recept.ReceptId);
+            }
+
             product.Kortingen = SelectedProduct.Kortingen;
             Product updateProduct = product.ConvertToProduct(product);
             productRepository.Update(updateProduct);
@@ -210,6 +255,7 @@ namespace PROG6_Assessment.ViewModel
                 item.ProductNaam = product.ProductNaam;
                 item.Prijs = product.Prijs;
                 item.Afdeling = product.Afdeling;
+                item.Recept = product.Recept;
                 item.Merken = product.Merken;
             }
         }
@@ -314,6 +360,29 @@ namespace PROG6_Assessment.ViewModel
                         
                         ProductenGekozenAfdeling.Add(p);
                     }
+                }
+            }
+        }
+
+        public void GekozenReceptShow(int id)
+        {
+            ProductenGekozenRecept.Clear();
+
+            foreach(ProductViewModel item in Products)
+            {
+                if (item.Recept.ReceptId == id)
+                {
+                    ProductViewModel p = new ProductViewModel();
+
+                    p.ProductId = item.ProductId;
+                    p.Prijs = item.Prijs;
+                    p.ProductNaam = item.ProductNaam;
+                    p.Afdeling = item.Afdeling;
+                    p.Merken = item.Merken;
+                    p.Kortingen = item.Kortingen;
+                    p.Recept = item.Recept;
+
+                    ProductenGekozenRecept.Add(p);
                 }
             }
         }

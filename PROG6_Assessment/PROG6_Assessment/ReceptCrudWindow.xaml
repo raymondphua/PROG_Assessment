@@ -13,8 +13,7 @@
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding ReceptList.SelectedRecept}" ItemsSource="{Binding ReceptList.Recepten}" Margin="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding ReceptId}" />
-                <DataGridTextColumn Header="Recept" Binding="{Binding ReceptNaam}" Width="150" />
-                <DataGridTextColumn Header="Producten" Binding="{Binding Producten.ProductNaam}" Width="60" />
+                <DataGridTextColumn Header="Recept" Binding="{Binding ReceptNaam}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -33,11 +32,10 @@
             <TextBox MaxLength="50" Grid.Column="1" Grid.Row="0"  Text="{Binding Path=ProductList.SelectedProduct.ProductNaam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         </Grid>
-        <Button Content="Products" Command="{Binding ShowProductListCommand}" Width="100" Margin="10,60,410.4,0"/>
-        <Button Content="Add" Command="{Binding ProductList.AddProductCommand}" Width="100" Margin="10,20,410.4,0"/>
-        <Button Content="Update" Command="{Binding ProductList.EditProductCommand}" Width="100" Margin="120,-20,306.4,0"/>
-        <Button Content="Delete" Command="{Binding ProductList.DeleteProductCommand}" Width="100" Margin="225,-20,0,0" HorizontalAlignment="Left"/>
-        <Button Content="Clear" Command="{Binding ProductList.ClearProductCommand}" Width="100" Margin="340,-20,96,0"/>
+        <Button Content="Add" Command="{Binding ReceptList.AddProductCommand}" Width="100" Margin="10,20,410.4,0"/>
+        <Button Content="Update" Command="{Binding ReceptList.EditProductCommand}" Width="100" Margin="120,-20,306.4,0"/>
+        <Button Content="Delete" Command="{Binding ReceptList.DeleteProductCommand}" Width="100" Margin="225,-20,0,0" HorizontalAlignment="Left"/>
+        <Button Content="Clear" Command="{Binding ReceptList.ClearProductCommand}" Width="100" Margin="340,-20,96,0"/>
 
     </StackPanel>
 </Window>

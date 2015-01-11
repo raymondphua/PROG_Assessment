@@ -10,14 +10,14 @@
         <Label Content="Appie" Foreground="White" FontSize="15" FontFamily="Arial" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="28" Margin="0,-50,0,0" Width="156"/>
 
         <TextBlock Text="Recepten" Foreground="White" HorizontalAlignment="Center" FontSize="28" />
-        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding ReceptList.SelectedRecept}" ItemsSource="{Binding ReceptList.Recepten}" Margin="5">
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedRecept}" ItemsSource="{Binding ReceptList.Recepten}" Margin="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding ReceptId}" Width="20" />
                 <DataGridTextColumn Header="Naam" Binding="{Binding ReceptNaam}" Width="170" />
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Products" Command="{Binding ShowProductenWindowCommand}" Width="100"  HorizontalAlignment="Center" Margin="0,60,0,0"/>
+        <Button Content="Toon Producten" Command="{Binding ShowProductenWindowCommand}" Width="100"  HorizontalAlignment="Center" Margin="0,60,0,0"/>
     </StackPanel>
 </Window>
 

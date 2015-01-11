@@ -10,7 +10,7 @@
         <Label Content="Appie" Foreground="White" FontSize="15" FontFamily="Arial" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="28" Margin="0,-50,0,0" Width="156"/>
 
         <TextBlock Text="Producten Lijst" Foreground="White" HorizontalAlignment="Center" FontSize="28" />
-        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding ReceptList.SelectedProduct}" ItemsSource="{Binding ReceptList.ProductGekozenRecept}" Margin="5">
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding ReceptList.SelectedProduct}" ItemsSource="{Binding ReceptList.ProductenGekozenRecept}" Margin="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding ProductId}" />
                 <DataGridTextColumn Header="Product" Binding="{Binding ProductNaam}" Width="150" />

@@ -29,6 +29,7 @@ namespace PROG6_Assessment.Model
                     .Include(x => x.Afdeling)
                     .Include(x => x.Merken)
                     .Include(x => x.Kortingen)
+                    .Include(x => x.Recept)
                     .ToList();
             }
         }
@@ -67,10 +68,15 @@ namespace PROG6_Assessment.Model
                     {
                         context.Entry(entity.Afdeling).State = EntityState.Unchanged;
                     }
+                    if (entity.Recept != null)
+                    {
+                        context.Entry(entity.Recept).State = EntityState.Unchanged;
+                    }
                     var editEntity = context.Producten.SingleOrDefault(x => x.ProductId == entity.ProductId);
 
                     editEntity.ProductNaam = entity.ProductNaam;
                     editEntity.Afdeling = entity.Afdeling;
+                    editEntity.Recept = entity.Recept;
                     editEntity.Prijs = entity.Prijs;
                     //context.Entry(editEntity).CurrentValues.SetValues(entity);
 

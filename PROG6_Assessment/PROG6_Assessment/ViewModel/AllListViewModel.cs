@@ -15,6 +15,7 @@ namespace PROG6_Assessment.ViewModel
         private AfdelingViewModel _selectedAfdeling;
         private ProductViewModel _selectedProduct;
         private ReceptViewModel _selectedRecept;
+        private List<ProductViewModel> _producten;
         private ProductOverzicht productOverzichtWindow;
         private ReceptProductLijst receptProductLijstWindow;
         private MerkOverzicht merkOverzichtWindow;
@@ -48,16 +49,23 @@ namespace PROG6_Assessment.ViewModel
 
         }
 
+        public List<ProductViewModel> ReceptListProducten 
+        {
+            get { return _producten; }
+            set { _producten = value; RaisePropertyChanged(); }
+        }
+
         public ICommand ShowProductenCommand { get; set; }
         public ICommand ShowProductenWindowCommand { get; set; }
         public ICommand ShowProductListCommand { get; set; }
         public ICommand ShowMerkenCommand { get; set; }
-
+        public ICommand AddReceptToBoodschappen { get; set; }
         public AllListViewModel()
         {
             _selectedAfdeling = new AfdelingViewModel();
             _selectedProduct = new ProductViewModel();
             _selectedRecept = new ReceptViewModel();
+            _producten = new List<ProductViewModel>();
 
             ProductenGekozenAfdeling = new ObservableCollection<ProductViewModel>();
             AfdelingList = new AfdelingListViewModel();
@@ -67,18 +75,23 @@ namespace PROG6_Assessment.ViewModel
             Lijstje = new BoodschappenlijstjeViewModel();
             ReceptList = new ReceptListViewModel();
 
-            DomainModel.Model.Product swag = new DomainModel.Model.Product();
-            swag.ProductNaam = "Aardbei";
-
-            Lijstje.Producten.Add(swag);
-
             ShowProductenCommand = new RelayCommand(ShowProductOverzicht, canShowProductOverzicht);
             ShowMerkenCommand = new RelayCommand(ShowMerkenOverzicht, canShowMerkOverzicht);
             ShowProductListCommand = new RelayCommand(ShowProductOverzichtRecept, canShowProductOverzichtRecept);
             ShowProductenWindowCommand = new RelayCommand(ShowProductOverzichtRecept2, canShowProductOverzichtRecept2);
+            AddReceptToBoodschappen = new RelayCommand(AddReceptToBoodschappenLijst, CanAddReceptToBoodschappen);
 
         }
 
+        private void AddReceptToBoodschappenLijst()
+        {
+            ProductList.AddReceptList(ReceptListProducten);
+        }
+
+        private bool CanAddReceptToBoodschappen()
+        {
+            return true;
+        }
         // ---------------- Product Overzicht ---------------- //
         private void ShowProductOverzicht()
         {
@@ -94,7 +107,7 @@ namespace PROG6_Assessment.ViewModel
         // ---------------- Product Overzicht ---------------- //
         private void ShowProductOverzichtRecept()
         {
-            ReceptList.GekozenRecept(SelectedRecept.ReceptId, ProductList.Products.ToList());
+            ProductList.GekozenReceptShow(SelectedRecept.ReceptId);
             receptProductLijstWindow.Show();
         }
         private bool canShowProductOverzichtRecept()
@@ -106,7 +119,7 @@ namespace PROG6_Assessment.ViewModel
         // ---------------- Product Overzicht ---------------- //
         private void ShowProductOverzichtRecept2()
         {
-            ReceptList.GekozenRecept(SelectedRecept.ReceptId, ProductList.Products.ToList());
+            ProductList.GekozenReceptShow(SelectedRecept.ReceptId);
             receptProductWindow.Show();
         }
         private bool canShowProductOverzichtRecept2()

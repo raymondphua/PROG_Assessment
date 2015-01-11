@@ -22,6 +22,7 @@ namespace DomainModel.Model
         [Required]
         public double Prijs { get; set; }
         public virtual Afdeling Afdeling { get; set; }
+        public virtual Recept Recept { get; set; }
         public virtual ICollection<Merk> Merken { get; set; }
         public virtual ICollection<Korting> Kortingen { get; set; }
     }
