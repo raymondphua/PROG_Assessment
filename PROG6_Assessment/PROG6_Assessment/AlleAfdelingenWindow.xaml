@@ -12,8 +12,8 @@
         <TextBlock Text="Alle Afdelingen overzicht" HorizontalAlignment="Center" Foreground="White" FontSize="28" />
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedAfdeling}" ItemsSource="{Binding AfdelingList.Afdelingen}" Margin="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Foreground="White" Header="Id" Binding="{Binding AfdelingId}" Width="100"/>
-                <DataGridTextColumn Foreground="White" Header="Afdeling" Binding="{Binding AfdelingNaam}" Width="*" />
+                <DataGridTextColumn Header="Id" Binding="{Binding AfdelingId}" Width="100"/>
+                <DataGridTextColumn Header="Afdeling" Binding="{Binding AfdelingNaam}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>

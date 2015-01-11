@@ -12,11 +12,11 @@
         <TextBlock Text="Korting lijst" HorizontalAlignment="Center" Foreground="White" FontSize="28" />
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding KortingList.SelectedKorting}" ItemsSource="{Binding KortingList.Kortingen}" Margin="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Foreground="White" Header="Id" Binding="{Binding KortingId}" Width="20" />
-                <DataGridTextColumn Foreground="White" Header="Coupon" Binding="{Binding Coupon}" Width="100" />
-                <DataGridTextColumn Foreground="White" Header="Start" Binding="{Binding StartDatum}" Width="125" />
-                <DataGridTextColumn Foreground="White" Header="Eind" Binding="{Binding EindDatum}" Width="125" />
-                <DataGridTextColumn Foreground="White" Header="Product" Binding="{Binding Product.ProductNaam}" Width="*" />
+                <DataGridTextColumn Header="Id" Binding="{Binding KortingId}" Width="20" />
+                <DataGridTextColumn Header="Coupon" Binding="{Binding Coupon}" Width="100" />
+                <DataGridTextColumn Header="Start" Binding="{Binding StartDatum}" Width="125" />
+                <DataGridTextColumn Header="Eind" Binding="{Binding EindDatum}" Width="125" />
+                <DataGridTextColumn Header="Product" Binding="{Binding Product.ProductNaam}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 

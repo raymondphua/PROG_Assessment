@@ -12,9 +12,9 @@
         <TextBlock Text="Merk lijst" Foreground="White" HorizontalAlignment="Center" FontSize="28" />
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding MerkList.SelectedMerk}" ItemsSource="{Binding MerkList.Merken}" Margin="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Foreground="White" Header="Id" Binding="{Binding MerkId}" Width="20" />
-                <DataGridTextColumn Foreground="White" Header="Merk" Binding="{Binding Merknaam}" Width="200" />
-                <DataGridTextColumn Foreground="White" Header="Product" Binding="{Binding Product.ProductNaam}" Width="*" />
+                <DataGridTextColumn Header="Id" Binding="{Binding MerkId}" Width="20" />
+                <DataGridTextColumn Header="Merk" Binding="{Binding Merknaam}" Width="200" />
+                <DataGridTextColumn Header="Product" Binding="{Binding Product.ProductNaam}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 
