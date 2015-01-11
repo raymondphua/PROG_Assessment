@@ -1,4 +1,5 @@
 ﻿using DomainModel.Model;
+using DomainModel.Repository;
 using PROG6_Assessment.Model;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,21 @@ namespace PROG6_Assessment.ViewModel
 {
     public class MerkViewModel : INotifyPropertyChanged
     {
+
+        private IMerkRepository _imr;
+
+        public MerkViewModel(IMerkRepository imr)
+        {
+            _imr = imr;
+        }
+
+        public string GetMerkNaamMock()
+        {
+
+            return _imr.GetAllMerken().First().MerkNaam;
+
+        }
+
 
         public int MerkId { 
             get { return _merk.MerkId; }

@@ -19,6 +19,13 @@ namespace PROG6_Assessment.Model
             dbContext = new AppieContext();
         }
 
+        public IEnumerable<Merk> GetAllMerken()
+        {
+
+            return GetAll();
+
+        }
+
         public List<Merk> GetAll()
         {
             List<Merk> merken = new List<Merk>();

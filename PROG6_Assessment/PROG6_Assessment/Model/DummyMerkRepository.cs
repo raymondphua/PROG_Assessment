@@ -23,6 +23,13 @@ namespace PROG6_Assessment.Model
             return merken;
         }
 
+        public IEnumerable<Merk> GetAllMerken()
+        {
+
+            return GetAll();
+
+        }
+
         public Merk Find(int id)
         {
             throw new NotImplementedException();

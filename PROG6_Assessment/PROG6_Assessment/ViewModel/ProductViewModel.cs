@@ -12,6 +12,23 @@ namespace PROG6_Assessment.ViewModel
 {
     public class ProductViewModel : INotifyPropertyChanged
     {
+
+        private IProductRepository _ipr;
+
+        public ProductViewModel(IProductRepository ipr)
+        {
+
+            _ipr = ipr;
+
+        }
+
+        public int TotalePrijs()
+        {
+
+            return (int) _ipr.GetAllProducts().Sum(c => c.Prijs);
+
+        }
+
         public int ProductId 
         { 
             get { return _product.ProductId; }

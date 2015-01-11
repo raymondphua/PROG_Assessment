@@ -23,6 +23,12 @@ namespace PROG6_Assessment.Model
             return products;
         }
 
+        public IEnumerable<Product> GetAllProducts()
+        {
+
+            return GetAll();
+        }
+
         public Product Find(int id)
         {
             throw new NotImplementedException();
