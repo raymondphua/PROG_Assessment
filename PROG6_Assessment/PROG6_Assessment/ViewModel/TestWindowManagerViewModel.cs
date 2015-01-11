@@ -14,6 +14,7 @@ namespace PROG6_Assessment.ViewModel
         private TestWindow _testWindow;
         private MerkWindow _merkWindow;
         private HoofdScherm _hoofdScherm;
+        private LijstScherm _lijstScherm;
         private OverzichtControl _overzichtControl;
         private AlleOverzichten alleOverzichten;
         private AlleAfdelingenWindow alleAfdelingenScherm;
@@ -24,11 +25,14 @@ namespace PROG6_Assessment.ViewModel
         private KortingBeheer kortingBeheerScherm;
         private AlleKortingenWindow alleKortingenScherm;
 
+        private BoodschappenlijstjeViewModel lijstje;
+
         public ICommand ShowMainWindowCommand { get; set; }
         public ICommand ShowSecondWindowCommand { get; set; }
         public ICommand ShowMerkWindowCommand { get; set; }
         public ICommand ShowHoofdSchermCommand { get; set; }
         public ICommand ShowOverzichtControlCommand { get; set; }
+        public ICommand ShowLijstCommand { get; set; }
         public ICommand ShowAlleOverzichtenCommand { get; set; }
         public ICommand AlleAfdelingenCommand { get; set; }
         public ICommand AlleProductenCommand { get; set; }
@@ -56,11 +60,22 @@ namespace PROG6_Assessment.ViewModel
             BeheerschermCommand = new RelayCommand(BeheerSchermShow, CanShowBeheerScherm);
             KortingBeheerCommand = new RelayCommand(KortingBeheerShow, CanShowKortingBeheer);
             AlleKortingenCommand = new RelayCommand(AlleKortingenShow, CanShowAlleKortingen);
+            ShowLijstCommand = new RelayCommand(ShowLijstWindow, canShowLijstWindow);
         }
 
         private void showMainWindow()
         {
             _mainWindow.Show();
+        }
+
+        private void ShowLijstWindow()
+        {
+            _lijstScherm.Show();
+        }
+
+        public bool canShowLijstWindow()
+        {
+            return _lijstScherm.IsVisible == false;
         }
 
         private bool canShowMainWindow()
