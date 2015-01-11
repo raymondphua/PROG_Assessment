@@ -1,13 +1,16 @@
 ﻿<Window x:Class="PROG6_Assessment.TestManager"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Beheer" Height="240" Width="300"
+        Title="Beheer" Height="337" Width="300"
         Closing="Window_Closing"
         DataContext="{Binding Manager, Source={StaticResource Locator}}">
-    <StackPanel Margin="0,0,0,0">
-        <Button Command="{Binding ShowSecondWindowCommand }" Height="50">Beheer Afdeling</Button>
-        <Button Command="{Binding ShowMainWindowCommand }" Height="50">Beheer Producten</Button>
-        <Button Command="{Binding ShowMerkWindowCommand }" Height="50">Beheer Merken</Button>
-        <Button Command="{Binding KortingBeheerCommand }" Height="50">Beheer Kortingen</Button>
+    <StackPanel Margin="0,0,0,0" Background="#4f4f4f">
+        <Rectangle Fill="#242424" HorizontalAlignment="Left" Height="53" Stroke="Black" Width="292"/>
+        <Label Content="Appie" Foreground="White" FontSize="15" FontFamily="Arial" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="28" Margin="0,-50,0,0" Width="156"/>
+
+        <Button Content="Beheer Afdeling" Command="{Binding ShowSecondWindowCommand }" HorizontalAlignment="Center" Height="23" Margin="0,40,0,0" Width="159"/>
+        <Button Content="Beheer Producten" Command="{Binding ShowMainWindowCommand }" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" Width="159"/>
+        <Button Content="Beheer Merken" Command="{Binding ShowMerkWindowCommand }" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" Width="159"/>
+        <Button Content="Beheer Kortingen" Command="{Binding KortingBeheerCommand}" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" Width="159"/>
     </StackPanel>
 </Window>

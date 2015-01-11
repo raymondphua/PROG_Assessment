@@ -5,8 +5,11 @@
         Closing="Window_Closing"
         DataContext="{Binding All, Source={StaticResource Locator}}">
 
-    <StackPanel>
-        <TextBlock Text="Korting lijst" FontSize="28" />
+    <StackPanel Background="#4f4f4f">
+        <Rectangle Fill="#242424" HorizontalAlignment="Left" Height="53" Stroke="Black" Width="525"/>
+        <Label Content="Appie" Foreground="White" FontSize="15" FontFamily="Arial" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="28" Margin="0,-50,0,0" Width="156"/>
+        
+        <TextBlock Text="Korting lijst" HorizontalAlignment="Center" Foreground="White" FontSize="28" />
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding KortingList.SelectedKorting}" ItemsSource="{Binding KortingList.Kortingen}" Margin="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding KortingId}" Width="20" />
